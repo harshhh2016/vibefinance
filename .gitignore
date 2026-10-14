@@ -5,3 +5,7 @@ data/documents/*.pdf
 
 data/documents/raw/
 data/documents/pages/
+data/index/
+data/documents/chunks.jsonl
+data/index/
+data/documents/chunks.jsonl

@@ -4,3 +4,4 @@ __pycache__/
 data/documents/*.pdf
 
 data/documents/raw/
+data/documents/pages/

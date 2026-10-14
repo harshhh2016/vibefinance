@@ -2,3 +2,5 @@
 .env
 __pycache__/
 data/documents/*.pdf
+
+data/documents/raw/

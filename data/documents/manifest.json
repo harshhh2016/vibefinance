@@ -1,0 +1,41 @@
+[
+  {
+    "doc_id": "TCS-PR-Q2FY27",
+    "symbol": "TCS",
+    "title": "TCS Q2 FY27 press release",
+    "doc_type": "quarterly_results",
+    "publication_date": "2026-10-08",
+    "source_url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2026-27/q2/IND%20AS/Press%20Release%20-%20INR.pdf",
+    "filename": "TCS_results_2026-10-08.pdf",
+    "data_status": "real",
+    "notes": "Ind AS and IFRS tables; India revenue shown QoQ and YoY",
+    "sha256": "eb85ca37e8eb23a251408923fa18dc23528f051c5748ce3575a72cbd0a3eaf62",
+    "size_bytes": 474936
+  },
+  {
+    "doc_id": "TCS-TR-Q2FY27",
+    "symbol": "TCS",
+    "title": "TCS Q2 FY27 earnings call transcript",
+    "doc_type": "transcript",
+    "publication_date": "2026-10-08",
+    "source_url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2026-27/q2/Management%20Commentary/Transcript%20of%20the%20Q2%202026-27%20Earnings%20Conference%20Call%20held%20on%20Oct%208,%202026.pdf",
+    "filename": "TCS_transcript_2026-10-08.pdf",
+    "data_status": "real",
+    "notes": "Edited for readability and not verbatim",
+    "sha256": "6aace3adfc0b7099a80d3f8d54a9f6a99794d8efe23d0650405790bed1144d35",
+    "size_bytes": 469132
+  },
+  {
+    "doc_id": "TCS-AR-FY26",
+    "symbol": "TCS",
+    "title": "TCS Integrated Annual Report 2025-26",
+    "doc_type": "annual_report",
+    "publication_date": "2026-05-15",
+    "source_url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf",
+    "filename": "TCS_annual_report_2026-05-15.pdf",
+    "data_status": "real",
+    "notes": "Date taken from PDF metadata and the latest dated page; website date not shown",
+    "sha256": "a19bddbe9cfd136de02fbd266335034a31d507efe790dfec0241be9aa0b0a5a0",
+    "size_bytes": 22126348
+  }
+]

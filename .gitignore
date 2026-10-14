@@ -1,11 +1,22 @@
+# Python virtual environment
 .venv/
+
+# Environment variables and secrets
 .env
+
+# Python cache
 __pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Raw financial documents
+data/documents/raw/
 data/documents/*.pdf
 
-data/documents/raw/
+# Generated RAG files
 data/documents/pages/
-data/index/
 data/documents/chunks.jsonl
 data/index/
-data/documents/chunks.jsonl
+
+# Local editor files
+.vscode/

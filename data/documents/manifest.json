@@ -37,5 +37,44 @@
     "notes": "Date taken from PDF metadata and the latest dated page; website date not shown",
     "sha256": "a19bddbe9cfd136de02fbd266335034a31d507efe790dfec0241be9aa0b0a5a0",
     "size_bytes": 22126348
+  },
+  {
+    "doc_id": "INFY-PR-Q1FY27",
+    "symbol": "INFY",
+    "title": "Infosys Q1 FY27 press release",
+    "doc_type": "quarterly_results",
+    "publication_date": "2026-07-23",
+    "source_url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2026-2027/q1/documents/ifrs-inr-press-release.pdf",
+    "filename": "INFY_results_2026-07-23.pdf",
+    "data_status": "real",
+    "notes": "INR results; quarter ended June 30 2026",
+    "sha256": "417a69774f091d7662c8fa9297a0f25b95580ed8808453e61fd8d0c1a6061ae0",
+    "size_bytes": 474552
+  },
+  {
+    "doc_id": "INFY-TR-Q1FY27",
+    "symbol": "INFY",
+    "title": "Infosys Q1 FY27 earnings call transcript",
+    "doc_type": "transcript",
+    "publication_date": "2026-07-23",
+    "source_url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2026-2027/q1/documents/transcripts/earningscall.pdf",
+    "filename": "INFY_transcript_2026-07-23.pdf",
+    "data_status": "real",
+    "notes": "Quarter ended June 30 2026; earnings call transcript",
+    "sha256": "a7be1c05b4f54dfa0cde220806c44cf867024f461d9bf20d829bf6d98e7cdf78",
+    "size_bytes": 328090
+  },
+  {
+    "doc_id": "INFY-AR-FY26",
+    "symbol": "INFY",
+    "title": "Infosys Integrated Annual Report 2025-26",
+    "doc_type": "annual_report",
+    "publication_date": "2026-05-29",
+    "source_url": "https://www.infosys.com/investors/reports-filings/annual-report/annual/documents/infosys-ar-26.pdf",
+    "filename": "INFY_annual_report_2026-05-29.pdf",
+    "data_status": "real",
+    "notes": "Integrated Annual Report FY2025-26; date based on stock-exchange filing",
+    "sha256": "602f04ec2abfacbf28ca8ff6e592db51942c620af4c12287d3a717edb6cd078f",
+    "size_bytes": 8933457
   }
 ]

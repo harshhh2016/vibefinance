@@ -1,7 +1,7 @@
 """Search the extracted page files and print the text around each match.
 
-Usage (from the project root):
-    python -m src.rag.find_text TCS-PR-Q2FY27 "10.3"
+Case-insensitive. Usage (from the project root):
+    python -m src.rag.find_text TCS-PR-Q2FY27 "dividend"
 """
 import json
 import re
@@ -25,7 +25,7 @@ def main() -> int:
         for line in f:
             rec = json.loads(line)
             text = rec["text"]
-            for m in re.finditer(re.escape(needle), text):
+            for m in re.finditer(re.escape(needle), text, re.IGNORECASE):
                 hits += 1
                 if hits > 8:
                     break

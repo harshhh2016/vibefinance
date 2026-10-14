@@ -2,7 +2,7 @@
 
 Usage (from the project root, venv active):
     $env:PYTHONUTF8 = "1"
-    python -m src.rag.eval_retrieval --method baseline --split dev
+    python -m src.rag.eval_retrieval --method baseline --split dev   (also bm25, hybrid, capped, hybrid_capped)
     python -m src.rag.eval_retrieval --method baseline --split heldout --final
 
 Rules: tune on --split dev only. Use --split heldout (needs --final) once, at the very end.
@@ -16,10 +16,11 @@ CHUNK_ID = re.compile(r"^(?P<doc>.+?):p(?P<page>\d+)")
 
 # ---------------------------------------------------------------- methods
 # Each method takes (query, k, as_of) and returns a ranked list of hits.
-def baseline(query, k, as_of, company="TCS"):
+def baseline(query, k, as_of, company="TCS", cap=None):
     from src.rag.retrieve import retrieve
     return retrieve(query, company, as_of, k=k)
 
+<<<<<<< HEAD
 def hybrid(query, k, as_of, company="TCS"):
     import re
     from src.rag.retrieve import retrieve
@@ -102,6 +103,20 @@ METHODS = {
     "baseline": baseline,
     "hybrid": hybrid,
     "cross_encoder": cross_encoder,
+=======
+def _variant(mode, use_cap):
+    def fn(query, k, as_of, company="TCS", cap=None):
+        from src.rag.retrieve_variants import run
+        return run(mode, query, company, as_of, k, cap if use_cap else None)
+    return fn
+
+METHODS = {
+    "baseline": baseline,                          # existing retrieve()
+    "bm25": _variant("bm25", False),               # keyword only
+    "hybrid": _variant("hybrid", False),           # embeddings + keywords
+    "capped": _variant("embed", True),             # embeddings + per-document cap
+    "hybrid_capped": _variant("hybrid", True),     # both fixes
+>>>>>>> fccf968 (Add BM25, hybrid and per-document cap variants; case-insensitive find_text)
 }
 
 # ---------------------------------------------------------------- hit parsing
@@ -135,6 +150,7 @@ def main():
     ap.add_argument("--final", action="store_true", help="required to touch the held-out split")
     ap.add_argument("--questions", default="data/eval/questions.json")
     ap.add_argument("--as-of", default="2026-10-15")
+    ap.add_argument("--cap", type=int, default=3, help="max chunks per document for capped methods")
     ap.add_argument("--out", default=None, help="optional path to save per-question results as JSON")
     a = ap.parse_args()
 
@@ -150,7 +166,7 @@ def main():
     fn, kmax = METHODS[a.method], max(KS)
     results, by_type = [], defaultdict(list)
     for r in scored:
-        rank = first_hit_rank(fn(r["question"], kmax, a.as_of), r["expected"])
+        rank = first_hit_rank(fn(r["question"], kmax, a.as_of, cap=a.cap), r["expected"])
         results.append({"id": r["id"], "type": r["type"], "rank": rank, "question": r["question"]})
         by_type[r["type"]].append(rank)
 

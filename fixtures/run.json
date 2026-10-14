@@ -1,0 +1,96 @@
+{
+  "run_id": "run-0001",
+  "created_at": "2026-10-15T10:00:00",
+  "symbol": "DEMO.NS",
+  "profile_id": "demo-conservative",
+  "as_of": "2026-10-13",
+  "config": {
+    "model": "to-record",
+    "temperature": 0.0,
+    "top_k": 5
+  },
+  "signals": [
+    {
+      "symbol": "DEMO.NS",
+      "as_of": "2026-10-13",
+      "name": "volume_anomaly",
+      "value": 2.4,
+      "unit": "rolling_z_score",
+      "label": "unusual",
+      "confidence": 0.7,
+      "method": "z-score over the previous 20 sessions",
+      "window_start": "2026-09-14",
+      "window_end": "2026-10-13",
+      "evidence_ids": [
+        "px:DEMO.NS:2026-10-13"
+      ],
+      "data_status": "historical",
+      "status": "complete"
+    }
+  ],
+  "findings": [
+    {
+      "agent": "filings",
+      "status": "complete",
+      "claims": [
+        {
+          "claim_id": "c1",
+          "entity": "DEMO.NS",
+          "metric_or_event": "debt_level",
+          "period": "FY2026",
+          "direction": "negative",
+          "claim_type": "factual",
+          "text": "Placeholder: the filing reports higher debt.",
+          "evidence_ids": [
+            "doc:DEMO-AR-2026:p14:c03"
+          ],
+          "confidence": 0.6
+        }
+      ],
+      "limitations": [
+        "no filing after 2026-05-20 available"
+      ],
+      "latency_ms": 0.0,
+      "error": null
+    }
+  ],
+  "efce": {
+    "status": "conflict_unresolved",
+    "supported": [
+      {
+        "claim_id": "c1",
+        "entity": "DEMO.NS",
+        "metric_or_event": "debt_level",
+        "period": "FY2026",
+        "direction": "negative",
+        "claim_type": "factual",
+        "text": "Placeholder: the filing reports higher debt.",
+        "evidence_ids": [
+          "doc:DEMO-AR-2026:p14:c03"
+        ],
+        "confidence": 0.6
+      }
+    ],
+    "conflicts": [
+      {
+        "kind": "analytical_disagreement",
+        "claim_ids": [
+          "c1",
+          "c2"
+        ],
+        "explanation": "Momentum and the filing measure different things."
+      }
+    ],
+    "abstained": [],
+    "rejected": [
+      {
+        "claim_id": "c9",
+        "reason": "unknown_evidence_id"
+      }
+    ]
+  },
+  "metrics": {
+    "portfolio_hhi": 0.0
+  },
+  "data_status": "historical"
+}

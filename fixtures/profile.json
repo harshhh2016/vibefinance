@@ -1,0 +1,21 @@
+{
+  "profile_id": "demo-conservative",
+  "risk_preference": "low",
+  "horizon_months": 36,
+  "max_single_position_pct": 15.0,
+  "max_sector_pct": 30.0,
+  "holdings": [
+    {
+      "symbol": "AAA",
+      "quantity": 100.0,
+      "avg_cost": 100.0,
+      "sector": "IT"
+    },
+    {
+      "symbol": "BBB",
+      "quantity": 50.0,
+      "avg_cost": 200.0,
+      "sector": "Banking"
+    }
+  ]
+}

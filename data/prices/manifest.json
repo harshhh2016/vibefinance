@@ -1,0 +1,65 @@
+{
+  "RELIANCE": {
+    "source": "Yahoo Finance via yfinance",
+    "ticker": "RELIANCE.NS",
+    "downloaded": "2026-10-14",
+    "rows": 248,
+    "first_date": "2025-10-14",
+    "last_date": "2026-10-14",
+    "data_status": "historical"
+  },
+  "TCS": {
+    "source": "Yahoo Finance via yfinance",
+    "ticker": "TCS.NS",
+    "downloaded": "2026-10-14",
+    "rows": 248,
+    "first_date": "2025-10-14",
+    "last_date": "2026-10-14",
+    "data_status": "historical"
+  },
+  "INFY": {
+    "source": "Yahoo Finance via yfinance",
+    "ticker": "INFY.NS",
+    "downloaded": "2026-10-14",
+    "rows": 248,
+    "first_date": "2025-10-14",
+    "last_date": "2026-10-14",
+    "data_status": "historical"
+  },
+  "HDFCBANK": {
+    "source": "Yahoo Finance via yfinance",
+    "ticker": "HDFCBANK.NS",
+    "downloaded": "2026-10-14",
+    "rows": 248,
+    "first_date": "2025-10-14",
+    "last_date": "2026-10-14",
+    "data_status": "historical"
+  },
+  "ICICIBANK": {
+    "source": "Yahoo Finance via yfinance",
+    "ticker": "ICICIBANK.NS",
+    "downloaded": "2026-10-14",
+    "rows": 248,
+    "first_date": "2025-10-14",
+    "last_date": "2026-10-14",
+    "data_status": "historical"
+  },
+  "ITC": {
+    "source": "Yahoo Finance via yfinance",
+    "ticker": "ITC.NS",
+    "downloaded": "2026-10-14",
+    "rows": 248,
+    "first_date": "2025-10-14",
+    "last_date": "2026-10-14",
+    "data_status": "historical"
+  },
+  "SBIN": {
+    "source": "Yahoo Finance via yfinance",
+    "ticker": "SBIN.NS",
+    "downloaded": "2026-10-14",
+    "rows": 248,
+    "first_date": "2025-10-14",
+    "last_date": "2026-10-14",
+    "data_status": "historical"
+  }
+}

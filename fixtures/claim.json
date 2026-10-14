@@ -1,0 +1,13 @@
+{
+  "claim_id": "c1",
+  "entity": "DEMO.NS",
+  "metric_or_event": "debt_level",
+  "period": "FY2026",
+  "direction": "negative",
+  "claim_type": "factual",
+  "text": "Placeholder: the filing reports higher debt.",
+  "evidence_ids": [
+    "doc:DEMO-AR-2026:p14:c03"
+  ],
+  "confidence": 0.6
+}

@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+pandas
+numpy
+yfinance
+faiss-cpu
+sentence-transformers
+transformers
+streamlit
+pytest
+python-dotenv
+pypdf

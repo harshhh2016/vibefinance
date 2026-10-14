@@ -1,0 +1,12 @@
+{
+  "evidence_id": "doc:DEMO-AR-2026:p14:c03",
+  "doc_id": "DEMO-AR-2026",
+  "title": "Annual report excerpt (placeholder)",
+  "publication_date": "2026-05-20",
+  "url": "https://example.com/source",
+  "page": 14,
+  "section": "Risk factors",
+  "text": "Placeholder passage text.",
+  "retrieval_score": 0.82,
+  "data_status": "synthetic"
+}

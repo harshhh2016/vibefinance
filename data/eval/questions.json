@@ -1,0 +1,487 @@
+[
+  {
+    "id": "q01",
+    "split": "dev",
+    "type": "table",
+    "answerable": true,
+    "question": "What was TCS's consolidated revenue for Q2 FY27 in rupees?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "73,188"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 9,
+        "evidence": "73,188"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 2,
+        "evidence": "73,188"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "73,188"
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "What operating margin did TCS report for the quarter?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "24.0%"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 4,
+        "evidence": "24%"
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "split": "dev",
+    "type": "table",
+    "answerable": true,
+    "question": "What net profit did TCS report for Q2 FY27?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "13,884"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 9,
+        "evidence": "13,884"
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "What was the total contract value of deals won this quarter?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "9.6 billion"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 2,
+        "evidence": "9.6"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 11,
+        "evidence": "9.6"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 28,
+        "evidence": "9.6"
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "split": "dev",
+    "type": "narrative",
+    "answerable": true,
+    "question": "How large is TCS's annualized AI revenue and what share of total revenue is it?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "3.1 billion"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "3.1 billion"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 13,
+        "evidence": "AI revenues now hitting 10%"
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "How much dividend per share is being paid and when?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "Dividend per share"
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "split": "dev",
+    "type": "table",
+    "answerable": true,
+    "question": "How much did India revenue change quarter on quarter in constant currency?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "10.3"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 12,
+        "evidence": "India revenue decline by about 10%"
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "What caused the decline in India revenue this quarter?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 12,
+        "evidence": "project deferral"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 13,
+        "evidence": "projects are reinstated"
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "split": "dev",
+    "type": "narrative",
+    "answerable": true,
+    "question": "Was the India project deferral related to hardware or third-party pass-through?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 26,
+        "evidence": "hardware purchases"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 27,
+        "evidence": "hardware pass-through"
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "split": "heldout",
+    "type": "table",
+    "answerable": true,
+    "question": "What was India's year-on-year constant currency growth?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "6.0"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 2,
+        "evidence": "India revenue grew 6%"
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "split": "dev",
+    "type": "table",
+    "answerable": true,
+    "question": "How did the Regional Markets and Others segment grow sequentially?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "5.8"
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "split": "heldout",
+    "type": "conflict",
+    "answerable": true,
+    "question": "How did the Consumer Business vertical perform compared with the previous quarter?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "0.7"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 10,
+        "evidence": "Consumer Business declined by 0.7%"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 2,
+        "evidence": "Consumer Business and"
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "split": "dev",
+    "type": "conflict",
+    "answerable": true,
+    "question": "What was LTM attrition in IT services and did it change?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "LTM Attrition"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "attrition remained stable"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 9,
+        "evidence": "reduced by 30 basis points"
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "How many employees does TCS have?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "598,056"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "598,000"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 8,
+        "evidence": "598,056"
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "split": "dev",
+    "type": "narrative",
+    "answerable": true,
+    "question": "What is TCS's long-term margin aspiration?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 14,
+        "evidence": "26% to 28%"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 25,
+        "evidence": "26%-28%"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 26,
+        "evidence": "26%-28%"
+      }
+    ]
+  },
+  {
+    "id": "q16",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "How much margin dilution is expected from the MHP acquisition?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 15,
+        "evidence": "50 basis points"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 19,
+        "evidence": "50 basis point"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 20,
+        "evidence": "50 bps"
+      }
+    ]
+  },
+  {
+    "id": "q17",
+    "split": "dev",
+    "type": "narrative",
+    "answerable": true,
+    "question": "What were net cash from operations and cash conversion?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "14,190"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 5,
+        "evidence": "102.2%"
+      }
+    ]
+  },
+  {
+    "id": "q18",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "How long before new data center capacity starts producing revenue?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 21,
+        "evidence": "18 to 24 months"
+      }
+    ]
+  },
+  {
+    "id": "q19",
+    "split": "dev",
+    "type": "narrative",
+    "answerable": true,
+    "question": "How many university graduates did TCS onboard this year?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 27,
+        "evidence": "10,000 graduates"
+      }
+    ]
+  },
+  {
+    "id": "q20",
+    "split": "heldout",
+    "type": "narrative",
+    "answerable": true,
+    "question": "What was DSO at the end of the quarter?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 5,
+        "evidence": "74 days"
+      }
+    ]
+  },
+  {
+    "id": "q21",
+    "split": "dev",
+    "type": "narrative",
+    "answerable": true,
+    "question": "What was revenue in US dollar terms and its growth?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "7,642"
+      }
+    ]
+  },
+  {
+    "id": "q22",
+    "split": "heldout",
+    "type": "table",
+    "answerable": true,
+    "question": "How many patents has TCS been granted in total?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 7,
+        "evidence": "5,885"
+      }
+    ]
+  },
+  {
+    "id": "u01",
+    "split": "dev",
+    "type": "unanswerable",
+    "answerable": false,
+    "question": "What was Infosys's Q2 FY27 revenue?",
+    "expected": []
+  },
+  {
+    "id": "u02",
+    "split": "heldout",
+    "type": "unanswerable",
+    "answerable": false,
+    "question": "What was TCS's free cash flow for Q2 FY27 in US dollars?",
+    "expected": []
+  },
+  {
+    "id": "ar01",
+    "split": "dev",
+    "type": "annual_report",
+    "answerable": true,
+    "status": "todo",
+    "question": "TODO: a question about the annual report (e.g. a FY2025-26 figure)",
+    "expected": []
+  },
+  {
+    "id": "ar02",
+    "split": "dev",
+    "type": "annual_report",
+    "answerable": true,
+    "status": "todo",
+    "question": "TODO",
+    "expected": []
+  },
+  {
+    "id": "ar03",
+    "split": "heldout",
+    "type": "annual_report",
+    "answerable": true,
+    "status": "todo",
+    "question": "TODO",
+    "expected": []
+  },
+  {
+    "id": "ar04",
+    "split": "heldout",
+    "type": "annual_report",
+    "answerable": true,
+    "status": "todo",
+    "question": "TODO",
+    "expected": []
+  }
+]

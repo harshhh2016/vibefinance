@@ -20,8 +20,7 @@ def baseline(query, k, as_of, company="TCS", cap=None):
     from src.rag.retrieve import retrieve
     return retrieve(query, company, as_of, k=k)
 
-<<<<<<< HEAD
-def hybrid(query, k, as_of, company="TCS"):
+def hybrid(query, k, as_of, company="TCS", cap=None):
     import re
     from src.rag.retrieve import retrieve
 
@@ -58,7 +57,7 @@ def hybrid(query, k, as_of, company="TCS"):
     ranked.sort(key=lambda item: item[0], reverse=True)
 
     return [hit for _, hit in ranked[:k]]
-def cross_encoder(query, k, as_of, company="TCS"):
+def cross_encoder(query, k, as_of, company="TCS", cap=None):
     from sentence_transformers import CrossEncoder
     from src.rag.retrieve import retrieve
 
@@ -99,24 +98,22 @@ def cross_encoder(query, k, as_of, company="TCS"):
         for _, candidate in ranked[:k]
     ]
 
-METHODS = {
-    "baseline": baseline,
-    "hybrid": hybrid,
-    "cross_encoder": cross_encoder,
-=======
+
 def _variant(mode, use_cap):
     def fn(query, k, as_of, company="TCS", cap=None):
         from src.rag.retrieve_variants import run
         return run(mode, query, company, as_of, k, cap if use_cap else None)
     return fn
 
+
 METHODS = {
-    "baseline": baseline,                          # existing retrieve()
-    "bm25": _variant("bm25", False),               # keyword only
-    "hybrid": _variant("hybrid", False),           # embeddings + keywords
-    "capped": _variant("embed", True),             # embeddings + per-document cap
-    "hybrid_capped": _variant("hybrid", True),     # both fixes
->>>>>>> fccf968 (Add BM25, hybrid and per-document cap variants; case-insensitive find_text)
+    "baseline": baseline,
+    "hybrid": hybrid,                  # teammate: semantic + keyword-overlap bonus
+    "cross_encoder": cross_encoder,    # teammate: cross-encoder rerank of top 100
+    "bm25": _variant("bm25", False),   # keyword only
+    "rrf": _variant("hybrid", False),  # embeddings + BM25, rank-fused
+    "capped": _variant("embed", True), # embeddings + per-document cap
+    "rrf_capped": _variant("hybrid", True),
 }
 
 # ---------------------------------------------------------------- hit parsing

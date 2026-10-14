@@ -20,8 +20,89 @@ def baseline(query, k, as_of, company="TCS"):
     from src.rag.retrieve import retrieve
     return retrieve(query, company, as_of, k=k)
 
-METHODS = {"baseline": baseline}
-# Later: METHODS["hybrid"] = ..., METHODS["capped"] = ...
+def hybrid(query, k, as_of, company="TCS"):
+    import re
+    from src.rag.retrieve import retrieve
+
+    # Semantic search: retrieve a larger candidate pool.
+    semantic_hits = retrieve(query, company, as_of, k=100)
+
+    # Extract meaningful keywords from the question.
+    stop_words = {
+        "what", "was", "were", "the", "and", "did", "does",
+        "how", "much", "many", "this", "that", "for", "from",
+        "with", "into", "its", "their", "have", "has", "had",
+        "year", "quarter"
+    }
+
+    keywords = {
+        word.lower()
+        for word in re.findall(r"\b[a-zA-Z0-9,.%]+\b", query)
+        if len(word) > 2 and word.lower() not in stop_words
+    }
+
+    # Combine semantic relevance and keyword overlap.
+    ranked = []
+
+    for hit in semantic_hits:
+        text = hit.text.lower()
+        overlap = sum(
+            1 for word in keywords
+            if word in text
+        )
+
+        score = float(hit.retrieval_score) + 0.05 * overlap
+        ranked.append((score, hit))
+
+    ranked.sort(key=lambda item: item[0], reverse=True)
+
+    return [hit for _, hit in ranked[:k]]
+def cross_encoder(query, k, as_of, company="TCS"):
+    from sentence_transformers import CrossEncoder
+    from src.rag.retrieve import retrieve
+
+    # Load the model only once
+    global _reranker
+
+    if "_reranker" not in globals():
+        _reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+
+    # Retrieve the top 100 candidates using semantic search
+    candidates = retrieve(
+        query,
+        company=company,
+        as_of=as_of,
+        k=100
+    )
+
+    if not candidates:
+        return []
+
+    # Score each passage against the question
+    pairs = [
+        (query, candidate.text)
+        for candidate in candidates
+    ]
+
+    scores = _reranker.predict(pairs)
+
+    # Rank passages by cross-encoder score
+    ranked = sorted(
+        zip(scores, candidates),
+        key=lambda item: float(item[0]),
+        reverse=True
+    )
+
+    return [
+        candidate
+        for _, candidate in ranked[:k]
+    ]
+
+METHODS = {
+    "baseline": baseline,
+    "hybrid": hybrid,
+    "cross_encoder": cross_encoder,
+}
 
 # ---------------------------------------------------------------- hit parsing
 def hit_key(hit):

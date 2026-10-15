@@ -16,6 +16,8 @@ from src.agents.filings import MODEL_NAME
 from src.agents.orchestrator import run_agents_sync
 from src.contracts import RunRecord
 from src.efce import build_registry, run_efce
+from src.portfolio.apply import apply_profile, load_latest_prices
+from src.portfolio.store import connect, list_profile_ids, load_profile
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -75,6 +77,20 @@ def main() -> int:
                 "top_k": 3, "timeout_s": args.timeout},
         signals=signals, findings=findings, efce=result, metrics=metrics,
     )
+    if args.profile != "unassigned":
+        conn = connect(str(ROOT / "data" / "portfolio.db"))
+        profile = load_profile(conn, args.profile)
+        if profile is None:
+            print("\nunknown profile {!r}; available: {}. Portfolio section skipped.".format(
+                args.profile, list_profile_ids(conn) or "none (run: python -m src.portfolio.store)"))
+        else:
+            pdir = Path(args.price_dir) if args.price_dir else ROOT / "data" / "prices"
+            syms = {h.symbol for h in profile.holdings} | {args.symbol}
+            record = apply_profile(record, profile, load_latest_prices(syms, as_of, pdir))
+            sec = record.config["portfolio"]
+            print("\nportfolio ({}, synthetic): HHI {:.2f}, breaches {}".format(
+                profile.profile_id, sec["hhi"], len(sec["breaches"])))
+            print("  risk note:", sec["risk_note"])
     out = ROOT / "data" / "runs"
     out.mkdir(parents=True, exist_ok=True)
     (out / (run_id + ".json")).write_text(record.model_dump_json(indent=2), encoding="utf-8")

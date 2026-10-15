@@ -453,36 +453,56 @@
     "split": "dev",
     "type": "annual_report",
     "answerable": true,
-    "status": "todo",
-    "question": "TODO: a question about the annual report (e.g. a FY2025-26 figure)",
-    "expected": []
+    "question": "What was TCS's total revenue from operations for fiscal year 2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 69,
+        "evidence": "operations 267,021 255,324"
+      }
+    ]
   },
   {
     "id": "ar02",
     "split": "dev",
     "type": "annual_report",
     "answerable": true,
-    "status": "todo",
-    "question": "TODO",
-    "expected": []
+    "question": "How many employees did TCS have at the end of FY2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 69,
+        "evidence": "584,519 607,979"
+      }
+    ]
   },
   {
     "id": "ar03",
     "split": "heldout",
     "type": "annual_report",
     "answerable": true,
-    "status": "todo",
-    "question": "TODO",
-    "expected": []
+    "question": "What total dividend per share was declared for fiscal year 2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 70,
+        "evidence": "Dividend Per Share ₹ 110.00 126.00"
+      }
+    ]
   },
   {
     "id": "ar04",
     "split": "heldout",
     "type": "annual_report",
     "answerable": true,
-    "status": "todo",
-    "question": "TODO",
-    "expected": []
+    "question": "What was the operating margin for the full year ended March 2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 70,
+        "evidence": "EBIT / Total Revenue % 25.0 24.3"
+      }
+    ]
   },
   {
     "id": "p01",
@@ -661,6 +681,34 @@
         "doc": "TCS-TR-Q2FY27",
         "page": 3,
         "evidence": "Autonomous Engineering Lab"
+      }
+    ]
+  },
+  {
+    "id": "ar05",
+    "split": "dev",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "What was voluntary attrition in IT services for the full fiscal year?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 55,
+        "evidence": "attrition at 13. 7 % for FY 2026"
+      }
+    ]
+  },
+  {
+    "id": "ar06",
+    "split": "heldout",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "How much profit after tax did the company earn in FY2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 69,
+        "evidence": "Profit after tax 52,820 48,553"
       }
     ]
   }

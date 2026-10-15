@@ -1,0 +1,170 @@
+[
+  {
+    "id": "q02",
+    "type": "narrative",
+    "rank": null,
+    "question": "What operating margin did TCS report for the quarter?"
+  },
+  {
+    "id": "q04",
+    "type": "narrative",
+    "rank": 1,
+    "question": "What was the total contract value of deals won this quarter?"
+  },
+  {
+    "id": "q06",
+    "type": "narrative",
+    "rank": null,
+    "question": "How much dividend per share is being paid and when?"
+  },
+  {
+    "id": "q08",
+    "type": "narrative",
+    "rank": 1,
+    "question": "What caused the decline in India revenue this quarter?"
+  },
+  {
+    "id": "q10",
+    "type": "table",
+    "rank": 5,
+    "question": "What was India's year-on-year constant currency growth?"
+  },
+  {
+    "id": "q12",
+    "type": "conflict",
+    "rank": 1,
+    "question": "How did the Consumer Business vertical perform compared with the previous quarter?"
+  },
+  {
+    "id": "q14",
+    "type": "narrative",
+    "rank": null,
+    "question": "How many employees does TCS have?"
+  },
+  {
+    "id": "q16",
+    "type": "narrative",
+    "rank": 2,
+    "question": "How much margin dilution is expected from the MHP acquisition?"
+  },
+  {
+    "id": "q18",
+    "type": "narrative",
+    "rank": 1,
+    "question": "How long before new data center capacity starts producing revenue?"
+  },
+  {
+    "id": "q20",
+    "type": "narrative",
+    "rank": null,
+    "question": "What was DSO at the end of the quarter?"
+  },
+  {
+    "id": "q22",
+    "type": "table",
+    "rank": 1,
+    "question": "How many patents has TCS been granted in total?"
+  },
+  {
+    "id": "ar03",
+    "type": "annual_report",
+    "rank": null,
+    "question": "What total dividend per share was declared for fiscal year 2026?"
+  },
+  {
+    "id": "ar04",
+    "type": "annual_report",
+    "rank": 11,
+    "question": "What was the operating margin for the full year ended March 2026?"
+  },
+  {
+    "id": "p02",
+    "type": "paraphrase",
+    "rank": 4,
+    "question": "What share of the workforce left over the last twelve months?"
+  },
+  {
+    "id": "p04",
+    "type": "paraphrase",
+    "rank": null,
+    "question": "What arrangement did the company announce with the German carmaker?"
+  },
+  {
+    "id": "p06",
+    "type": "paraphrase",
+    "rank": null,
+    "question": "Is management giving numerical forecasts for upcoming quarters?"
+  },
+  {
+    "id": "p08",
+    "type": "paraphrase",
+    "rank": null,
+    "question": "Why did profitability slip even without annual pay raises?"
+  },
+  {
+    "id": "p10",
+    "type": "paraphrase",
+    "rank": 2,
+    "question": "What new physical AI labs did TCS open and where?"
+  },
+  {
+    "id": "ar06",
+    "type": "annual_report",
+    "rank": 3,
+    "question": "How much profit after tax did the company earn in FY2026?"
+  },
+  {
+    "id": "ar08",
+    "type": "annual_report",
+    "rank": 1,
+    "question": "What return on equity did TCS deliver in FY2026?"
+  },
+  {
+    "id": "ar10",
+    "type": "annual_report",
+    "rank": null,
+    "question": "What was the total contract value of deals TCS won in FY2026?"
+  },
+  {
+    "id": "ar12",
+    "type": "annual_report",
+    "rank": 1,
+    "question": "How many of TCS's permanent employees are women?"
+  },
+  {
+    "id": "p16",
+    "type": "paraphrase",
+    "rank": null,
+    "question": "What level of profitability from operations did the company post for the three months?"
+  },
+  {
+    "id": "p17",
+    "type": "paraphrase",
+    "rank": 14,
+    "question": "How much business did the company sign up for in total deal value this quarter?"
+  },
+  {
+    "id": "p18",
+    "type": "paraphrase",
+    "rank": null,
+    "question": "What payout per share is being distributed to shareholders and on what date?"
+  },
+  {
+    "id": "p19",
+    "type": "paraphrase",
+    "rank": 3,
+    "question": "How much will the MHP deal hurt profitability?"
+  },
+  {
+    "id": "p20",
+    "type": "paraphrase",
+    "rank": 1,
+    "question": "How much time passes before newly built server-farm capacity begins to bring in revenue?"
+  },
+  {
+    "id": "p21",
+    "type": "paraphrase",
+    "rank": null,
+    "question": "How many days of sales were outstanding in receivables at the end of the quarter?"
+  }
+]

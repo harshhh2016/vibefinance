@@ -1,0 +1,62 @@
+﻿=== baseline
+  ar05    -  [annual_report]
+
+group           n  R@1   R@3   R@5   R@10  R@15    MRR
+ALL            19  0.16  0.21  0.32  0.42  0.47   0.23
+annual_report   3  0.00  0.00  0.00  0.00  0.00   0.00
+conflict        1  1.00  1.00  1.00  1.00  1.00   1.00
+narrative       6  0.00  0.00  0.17  0.17  0.33   0.05
+paraphrase      5  0.20  0.40  0.40  0.60  0.60   0.32
+table           4  0.25  0.25  0.50  0.75  0.75   0.35
+=== bm25
+  ar05    1  [annual_report]
+
+group           n  R@1   R@3   R@5   R@10  R@15    MRR
+ALL            19  0.42  0.63  0.74  0.74  0.84   0.55
+annual_report   3  0.33  0.33  0.33  0.33  0.33   0.33
+conflict        1  1.00  1.00  1.00  1.00  1.00   1.00
+narrative       6  0.67  0.83  1.00  1.00  1.00   0.79
+paraphrase      5  0.00  0.40  0.40  0.40  0.80   0.23
+table           4  0.50  0.75  1.00  1.00  1.00   0.63
+=== rrf_capped
+  ar05    -  [annual_report]
+
+group           n  R@1   R@3   R@5   R@10  R@15    MRR
+ALL            19  0.26  0.42  0.63  0.74  0.74   0.41
+annual_report   3  0.00  0.00  0.00  0.00  0.00   0.00
+conflict        1  1.00  1.00  1.00  1.00  1.00   1.00
+narrative       6  0.00  0.33  0.67  0.83  0.83   0.27
+paraphrase      5  0.20  0.40  0.60  0.80  0.80   0.37
+table           4  0.75  0.75  1.00  1.00  1.00   0.81
+=== rerank
+=== baseline
+  ar05    -  [annual_report]
+
+group           n  R@1   R@3   R@5   R@10  R@15    MRR
+ALL            19  0.16  0.21  0.32  0.42  0.47   0.23
+annual_report   3  0.00  0.00  0.00  0.00  0.00   0.00
+conflict        1  1.00  1.00  1.00  1.00  1.00   1.00
+narrative       6  0.00  0.00  0.17  0.17  0.33   0.05
+paraphrase      5  0.20  0.40  0.40  0.60  0.60   0.32
+table           4  0.25  0.25  0.50  0.75  0.75   0.35
+=== bm25
+  ar05    1  [annual_report]
+
+group           n  R@1   R@3   R@5   R@10  R@15    MRR
+ALL            19  0.42  0.63  0.74  0.74  0.84   0.55
+annual_report   3  0.33  0.33  0.33  0.33  0.33   0.33
+conflict        1  1.00  1.00  1.00  1.00  1.00   1.00
+narrative       6  0.67  0.83  1.00  1.00  1.00   0.79
+paraphrase      5  0.00  0.40  0.40  0.40  0.80   0.23
+table           4  0.50  0.75  1.00  1.00  1.00   0.63
+=== rrf_capped
+  ar05    -  [annual_report]
+
+group           n  R@1   R@3   R@5   R@10  R@15    MRR
+ALL            19  0.26  0.42  0.63  0.74  0.74   0.41
+annual_report   3  0.00  0.00  0.00  0.00  0.00   0.00
+conflict        1  1.00  1.00  1.00  1.00  1.00   1.00
+narrative       6  0.00  0.33  0.67  0.83  0.83   0.27
+paraphrase      5  0.20  0.40  0.60  0.80  0.80   0.37
+table           4  0.75  0.75  1.00  1.00  1.00   0.81
+=== rerank

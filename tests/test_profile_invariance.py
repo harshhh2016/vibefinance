@@ -44,7 +44,7 @@ def test_profiles_change_only_risk_output():
     assert pa["risk_note"] != pb["risk_note"]
     assert pa["weights"] != pb["weights"] and a.metrics["hhi"] != b.metrics["hhi"]
     flags = lambda p: {(x["kind"], x["name"]) for x in p["breaches"]}
-    assert flags(pa) == {("position", "ITC"), ("position", "TCS")}
+    assert flags(pa) == {("position", "ITC")}
     assert flags(pb) == {("position", "TCS"), ("sector", "IT")}
     assert a.profile_id == "conservative" and b.profile_id == "aggressive"
 

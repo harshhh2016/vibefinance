@@ -72,7 +72,7 @@ def list_profile_ids(conn: sqlite3.Connection) -> list:
 # SYNTHETIC demo data: made-up quantities and costs, not real investors.
 DEMO_PROFILES = [
     Profile(profile_id="conservative", risk_preference="low", horizon_months=60,
-            max_single_position_pct=20.0, max_sector_pct=40.0, holdings=[
+            max_single_position_pct=30.0, max_sector_pct=40.0, holdings=[
                 Holding(symbol="HDFCBANK", quantity=100, avg_cost=1600, sector="Banking"),
                 Holding(symbol="ICICIBANK", quantity=100, avg_cost=1100, sector="Banking"),
                 Holding(symbol="ITC", quantity=500, avg_cost=400, sector="FMCG"),

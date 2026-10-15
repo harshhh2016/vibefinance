@@ -530,6 +530,31 @@ def get_available_companies():
     return sorted(symbols)
 
 
+@st.cache_data(show_spinner=False)
+def get_symbols_with_documents():
+    """Symbols that have ingested filings (read from data/documents/chunks.jsonl)."""
+    import json
+    from pathlib import Path as _Path
+    path = _Path(__file__).resolve().parent / "data" / "documents" / "chunks.jsonl"
+    found = set()
+    if not path.exists():
+        return found
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    found.add(str(json.loads(line).get("symbol", "")).upper())
+                except ValueError:
+                    continue
+    except OSError:
+        return found
+    found.discard("")
+    return found
+
+
 def get_company_metadata(manifest, symbol):
     """Read metadata from supported manifest structures."""
 
@@ -804,11 +829,26 @@ default_index = (
     else 0
 )
 
+DOC_SYMBOLS = get_symbols_with_documents()
+
+
+def _company_label(sym):
+    if sym.upper() in DOC_SYMBOLS:
+        return "{} (full analysis)".format(sym)
+    return "{} (prices only)".format(sym)
+
+
 selected_company = st.sidebar.selectbox(
     "Select a company",
     available_companies,
     index=default_index,
+    format_func=_company_label,
 )
+if selected_company.upper() not in DOC_SYMBOLS:
+    st.sidebar.info(
+        "Filings are not ingested for this company. Only the price-based "
+        "signals run; sentiment and filings are reported as missing by design."
+    )
 
 selected_prices_for_date = load_prices(selected_company)
 if not selected_prices_for_date.empty:

@@ -274,8 +274,43 @@ def build_llm_finding(symbol: str, good: list, dropped: int) -> Finding:
     return Finding(agent="filings", status="complete", claims=claims, limitations=limits)
 
 
+_INJECTION = re.compile(
+    r"ignore (all |any |the )?(previous|prior|above|earlier)|disregard (all |any |the )?(previous|prior|above|instructions)"
+    r"|new instructions|you are now|system prompt|do not follow|override (the )?(rules|instructions)"
+    r"|(?:(?:^|[.!?:;\n])\s*|\b(?:then|just|please|now)\s+)(?:reply|respond|answer|output|report)\s+(?:only\s+)?with\b"
+    r"|instead,? (say|report|output|reply)",
+    re.IGNORECASE,
+)
+
+
+def looks_like_instruction(text: str) -> bool:
+    return _INJECTION.search(text or "") is not None
+
+
+def drop_injected(hits: dict):
+    """Remove passages that read like instructions to the model. Returns (clean hits, flagged ids)."""
+    clean, flagged = {}, set()
+    for metric, cits in hits.items():
+        keep = []
+        for c in cits:
+            if looks_like_instruction(c.text):
+                flagged.add(c.evidence_id)
+            else:
+                keep.append(c)
+        clean[metric] = keep
+    return clean, sorted(flagged)
+
+
+def _note_flagged(finding, flagged):
+    if flagged:
+        finding.limitations.append(
+            "dropped {} passage(s) containing instruction-like text: {}".format(len(flagged), ", ".join(flagged)))
+    return finding
+
+
 def run(ctx: AgentContext) -> AgentResult:
     hits, _ = gather(ctx)
+    hits, flagged = drop_injected(hits)
     passages, shown, topic_eids = select_topic_passages(hits)
     cits = list({c.evidence_id: c for found in hits.values() for c in found}.values())
     if ctx.use_llm and passages:
@@ -285,11 +320,12 @@ def run(ctx: AgentContext) -> AgentResult:
             data = assign_evidence(data, topic_eids)
             good, dropped = validate_llm_claims(data, passages, shown)
             if good:
-                return AgentResult(build_llm_finding(ctx.symbol, good, dropped), citations=cits)
+                f = _note_flagged(build_llm_finding(ctx.symbol, good, dropped), flagged)
+                return AgentResult(f, citations=cits)
             reason = "model produced no verifiable claims"
         except Exception as exc:
             reason = "model unavailable ({})".format(type(exc).__name__)
         fb = build_finding(ctx.symbol, hits)
         fb.limitations.append("fell back to verbatim quotes: " + reason)
-        return AgentResult(fb, citations=cits)
-    return AgentResult(build_finding(ctx.symbol, hits), citations=cits)
+        return AgentResult(_note_flagged(fb, flagged), citations=cits)
+    return AgentResult(_note_flagged(build_finding(ctx.symbol, hits), flagged), citations=cits)

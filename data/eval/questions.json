@@ -786,5 +786,139 @@
         "evidence": "Profit after tax attributable to shareholders of the Company 52,820"
       }
     ]
+  },
+  {
+    "id": "ar07",
+    "split": "dev",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "What was TCS's earnings per share for fiscal year 2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 24,
+        "evidence": "FY 2026 1 45. 9 9"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 58,
+        "evidence": "145.99 8.8 134.19"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 69,
+        "evidence": "EPS - as reported 145.99 134.19"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 70,
+        "evidence": "145.99 134.19 127.74 115.19"
+      }
+    ]
+  },
+  {
+    "id": "ar08",
+    "split": "heldout",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "What return on equity did TCS deliver in FY2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 23,
+        "evidence": "Return on Equity 51. 4%"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 24,
+        "evidence": "FY 2026 51 . 4%"
+      }
+    ]
+  },
+  {
+    "id": "ar09",
+    "split": "dev",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "What percentage of profit did TCS pay out to shareholders in FY2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 23,
+        "evidence": "Shareholder Payout 80. 9%"
+      }
+    ]
+  },
+  {
+    "id": "ar10",
+    "split": "heldout",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "What was the total contract value of deals TCS won in FY2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 5,
+        "evidence": "T otal C ontract V al ue ( T C V ) $ 40. 7 billion"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 23,
+        "evidence": "Total Contract Value $ 40. 7 billion"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 27,
+        "evidence": "supported by U S$ 40.7 billion of TCV in FY 2026"
+      }
+    ]
+  },
+  {
+    "id": "ar11",
+    "split": "dev",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "How many freshers did TCS hire in FY2026?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 23,
+        "evidence": "Fresher Hiring 44, 000+"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 25,
+        "evidence": "F resh er h i ri ng 44, 0 0 0 +"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 55,
+        "evidence": "the Company hired over 44, 000 freshers"
+      }
+    ]
+  },
+  {
+    "id": "ar12",
+    "split": "heldout",
+    "type": "annual_report",
+    "answerable": true,
+    "question": "How many of TCS's permanent employees are women?",
+    "expected": [
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 108,
+        "evidence": "Permanent (D) 5,84,519 3,78,969 64.8 2,05,550 35.2"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 117,
+        "evidence": "Female 2,05,550 2,00,841 97.7"
+      },
+      {
+        "doc": "TCS-AR-FY26",
+        "page": 119,
+        "evidence": "Female 2,05,550 3,448 1.7"
+      }
+    ]
   }
 ]

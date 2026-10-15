@@ -2,21 +2,23 @@
 
 Primary path: the local Ollama model writes short claims from the retrieved passages.
 Every claim is checked: its evidence_id must be one of the passages it was shown, and every
-number in it must appear in that passage. Anything else is dropped.
+number in it must appear in the text it was shown for that passage. Anything else is dropped.
 Fallback (Ollama down, or nothing verifiable): quote a line from the stored passage verbatim.
 """
 from __future__ import annotations
 
 import json
 import re
+import sys
 
 from src.agents.base import AgentContext, AgentResult, get_retrieve
 from src.contracts import Claim, Finding
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "llama3.2:latest"
-PASSAGE_CHARS = 1500
-MAX_PASSAGES = 6
+PASSAGE_CHARS = 600
+MAX_PASSAGES = 5
+MAX_PROMPT_CHARS = 4500
 
 # (metric_or_event, retrieval query, keywords that must appear in the quoted line)
 TOPICS = [
@@ -95,8 +97,77 @@ def gather(ctx: AgentContext):
     return hits, passages
 
 
-def build_prompt(symbol: str, passages: dict) -> str:
-    blocks = "\n\n".join("[{}]\n{}".format(eid, c.text[:PASSAGE_CHARS]) for eid, c in passages.items())
+def focus(text: str, keywords, n: int = PASSAGE_CHARS) -> str:
+    """Cut a long passage to n characters, starting near the first line that has a keyword
+    (preferring a line that also has a digit)."""
+    if len(text) <= n:
+        return text
+    offset, best = 0, None
+    for ln in text.splitlines(keepends=True):
+        low = ln.lower()
+        if any(k in low for k in keywords):
+            if any(ch.isdigit() for ch in ln):
+                best = offset
+                break
+            if best is None:
+                best = offset
+        offset += len(ln)
+    start = max(0, (best or 0) - 100)
+    return text[start:start + n]
+
+
+def select_passages(hits: dict):
+    """One passage per topic (the top hit), each trimmed. Returns (passages, shown)."""
+    passages, shown = {}, {}
+    for metric, _query, kw in TOPICS:
+        for c in hits.get(metric, [])[:1]:
+            if c.evidence_id not in passages and len(passages) < MAX_PASSAGES:
+                passages[c.evidence_id] = c
+                shown[c.evidence_id] = focus(c.text, kw)
+    return passages, shown
+
+
+def select_topic_passages(hits: dict):
+    # top hit per topic; returns (passages by evidence id, shown text by id, metric -> evidence id)
+    passages, shown, topic_eids = {}, {}, {}
+    for metric, _query, kw in TOPICS:
+        for c in hits.get(metric, [])[:1]:
+            passages[c.evidence_id] = c
+            shown.setdefault(c.evidence_id, focus(c.text, kw))
+            topic_eids[metric] = c.evidence_id
+    return passages, shown, topic_eids
+
+
+def assign_evidence(data, topic_eids: dict):
+    # the model does not pick sources: unless it cited a shown id, the id comes from the metric
+    items = data.get("claims") if isinstance(data, dict) else None
+    if isinstance(items, list):
+        known = set(topic_eids.values())
+        for it in items:
+            if isinstance(it, dict) and it.get("evidence_id") not in known:
+                it["evidence_id"] = topic_eids.get(it.get("metric"), "")
+    return data
+
+
+def build_prompt(symbol: str, passages: dict, shown: dict | None = None, topic_eids: dict | None = None) -> str:
+    shown = shown or {}
+    if topic_eids:
+        blocks = "\n\n".join(
+            "[{}]\n{}".format(m, shown.get(e, passages[e].text[:PASSAGE_CHARS]))
+            for m, e in topic_eids.items() if e in passages
+        )
+        return (
+            "You extract facts about " + symbol + " from the labelled passages below. "
+            "Each passage belongs to one metric. For a metric, use ONLY the passage under its label.\n"
+            "Rules: copy every number exactly as written; do not calculate; do not guess; "
+            "one claim per metric; skip a metric if its passage does not state it.\n"
+            "Write each claim as one full sentence that names the metric and includes the number.\n"
+            'Reply with JSON only: {"claims": [{"metric": "<label>", "text": "<sentence>"}]}\n\n'
+            "PASSAGES:\n" + blocks + "\n"
+        )
+    blocks = "\n\n".join(
+        "[{}]\n{}".format(eid, shown.get(eid, c.text[:PASSAGE_CHARS])) for eid, c in passages.items()
+    )
     return (
         "You extract facts about " + symbol + " from the passages below. Use ONLY these passages.\n"
         "Rules: copy every number exactly as written; do not calculate; do not guess; "
@@ -108,25 +179,52 @@ def build_prompt(symbol: str, passages: dict) -> str:
     )
 
 
-def ollama_json(prompt: str, timeout: float = 90.0) -> dict:
+def ollama_json(prompt: str, timeout: float = 180.0) -> dict:
     import requests
     r = requests.post(OLLAMA_URL, json={
         "model": MODEL_NAME, "prompt": prompt, "stream": False, "format": "json",
-        "options": {"temperature": 0, "num_ctx": 8192},
+        "keep_alive": "30m",
+        "options": {"temperature": 0, "num_ctx": 4096, "num_predict": 400},
     }, timeout=timeout)
     r.raise_for_status()
-    return json.loads(r.json()["response"])
+    d = r.json()
+    print("[ollama] load {:.1f}s | prompt {} tok in {:.1f}s | gen {} tok in {:.1f}s".format(
+        d.get("load_duration", 0) / 1e9,
+        d.get("prompt_eval_count", 0), d.get("prompt_eval_duration", 0) / 1e9,
+        d.get("eval_count", 0), d.get("eval_duration", 0) / 1e9), file=sys.stderr)
+    return json.loads(d["response"])
 
 
-_NUM = re.compile(r"\d[\d,]*\.?\d*")
+_NUM = re.compile(r"(?<![A-Za-z\d])\d[\d,]*\.?\d*")
 
 
 def _squash(s: str) -> str:
     return re.sub(r"[\s,]", "", s)
 
 
-def validate_llm_claims(data, passages: dict):
-    """Keep only claims whose evidence id was shown and whose numbers appear in that passage."""
+def _norm(s: str) -> str:
+    # drop thousands separators only (1,234 -> 1234); keep spaces and decimal points
+    return re.sub(r"(?<=\d),(?=\d)", "", s)
+
+
+def _has_number(n: str, hay: str) -> bool:
+    # whole-number match: "24" must not match inside "2024" or "24.5"
+    return re.search(r"(?<![\d.])" + re.escape(n) + r"(?!\d|\.\d)", hay) is not None
+
+
+_PERIOD_TERMS = ("year on year", "yoy", "qoq", "quarter on quarter", "sequential", "constant currency")
+
+
+def _periods_supported(text: str, shown_text: str) -> bool:
+    # a period word in the claim must also be in the text the model was shown
+    t = text.lower().replace("-", " ")
+    h = shown_text.lower().replace("-", " ")
+    return all(term in h for term in _PERIOD_TERMS if term in t)
+
+
+def validate_llm_claims(data, passages: dict, shown: dict | None = None):
+    """Keep only claims whose evidence id was shown and whose numbers appear in the text shown."""
+    shown = shown or {}
     items = data.get("claims") if isinstance(data, dict) else None
     if not isinstance(items, list):
         return [], 0
@@ -141,9 +239,12 @@ def validate_llm_claims(data, passages: dict):
         if metric not in METRICS or metric in seen or not text or cit is None:
             dropped += 1
             continue
-        hay = _squash(cit.text[:PASSAGE_CHARS])
-        nums = [_squash(n).rstrip(".") for n in _NUM.findall(text)]
-        if not nums or any(n not in hay for n in nums):
+        hay = _norm(shown.get(eid, cit.text[:PASSAGE_CHARS]))
+        nums = [_norm(n).rstrip(".,") for n in _NUM.findall(text)]
+        if not nums or not all(_has_number(n, hay) for n in nums):
+            dropped += 1
+            continue
+        if not _periods_supported(text, shown.get(eid, cit.text[:PASSAGE_CHARS])):
             dropped += 1
             continue
         seen.add(metric)
@@ -174,12 +275,15 @@ def build_llm_finding(symbol: str, good: list, dropped: int) -> Finding:
 
 
 def run(ctx: AgentContext) -> AgentResult:
-    hits, passages = gather(ctx)
+    hits, _ = gather(ctx)
+    passages, shown, topic_eids = select_topic_passages(hits)
     cits = list({c.evidence_id: c for found in hits.values() for c in found}.values())
     if ctx.use_llm and passages:
         try:
             llm = ctx.llm_fn or ollama_json
-            good, dropped = validate_llm_claims(llm(build_prompt(ctx.symbol, passages)), passages)
+            data = llm(build_prompt(ctx.symbol, passages, shown, topic_eids))
+            data = assign_evidence(data, topic_eids)
+            good, dropped = validate_llm_claims(data, passages, shown)
             if good:
                 return AgentResult(build_llm_finding(ctx.symbol, good, dropped), citations=cits)
             reason = "model produced no verifiable claims"

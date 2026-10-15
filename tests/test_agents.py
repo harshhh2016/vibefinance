@@ -145,3 +145,63 @@ def test_technical_cites_only_latest_price_row():
     f = technical.build_finding([_sig("momentum", 0.03, "positive",
                                       evidence=["px:TCS:2026-09-15", "px:TCS:2026-10-14"])])
     assert f.claims[0].evidence_ids == ["px:TCS:2026-10-14"]
+
+
+def test_filings_prompt_stays_within_budget():
+    from types import SimpleNamespace
+    from src.agents import filings
+    long_text = "Operating margin was 25.2 percent this quarter. " * 100
+    cits = {"doc:X:p%d:c01" % i: SimpleNamespace(text=long_text) for i in range(5)}
+    shown = {eid: filings.focus(c.text, ("operating margin",)) for eid, c in cits.items()}
+    assert len(filings.build_prompt("TCS", cits, shown)) <= filings.MAX_PROMPT_CHARS
+
+
+def test_filings_number_outside_shown_text_is_dropped():
+    from types import SimpleNamespace
+    from src.agents import filings
+    c = SimpleNamespace(text="Margin is 25.2 percent. " + "x" * 1000 + " dividend 110", page=1)
+    data = {"claims": [{"metric": "dividend", "text": "Dividend is 110", "evidence_id": "e1"}]}
+    good, dropped = filings.validate_llm_claims(data, {"e1": c}, {"e1": c.text[:30]})
+    assert good == [] and dropped == 1
+
+
+def test_filings_model_never_chooses_its_own_source():
+    from types import SimpleNamespace
+    from src.agents import filings
+    c = SimpleNamespace(text="Attrition remained stable at 13.3% this quarter.", page=1)
+    eid = "doc:X:p001:c01"
+    data = {"claims": [{"metric": "attrition", "text": "Attrition was 13.3%", "evidence_id": "[p001:c01]"}]}
+    data = filings.assign_evidence(data, {"attrition": eid})
+    good, dropped = filings.validate_llm_claims(data, {eid: c}, {eid: c.text})
+    assert len(good) == 1 and good[0][2] is c
+
+
+def test_filings_number_must_match_whole_number():
+    from types import SimpleNamespace
+    from src.agents import filings
+    c = SimpleNamespace(text="Revenue in 2024 was strong.", page=1)
+    data = {"claims": [{"metric": "revenue", "text": "Revenue grew 24%", "evidence_id": "e1"}]}
+    good, dropped = filings.validate_llm_claims(data, {"e1": c}, {"e1": c.text})
+    assert good == [] and dropped == 1
+
+
+def test_filings_digits_inside_labels_are_not_numbers():
+    from types import SimpleNamespace
+    from src.agents import filings
+    c = SimpleNamespace(text="Q2 deal wins were strong.", page=1)
+    data = {"claims": [{"metric": "total_contract_value", "text": "Q2 TCV grew", "evidence_id": "e1"}]}
+    good, dropped = filings.validate_llm_claims(data, {"e1": c}, {"e1": c.text})
+    assert good == [] and dropped == 1
+
+
+def test_filings_period_word_must_be_in_shown_text():
+    from types import SimpleNamespace
+    from src.agents import filings
+    c = SimpleNamespace(text="India revenue grew 6% last quarter.", page=1)
+    bad = {"claims": [{"metric": "revenue", "text": "India revenue grew 6% year-on-year", "evidence_id": "e1"}]}
+    good, dropped = filings.validate_llm_claims(bad, {"e1": c}, {"e1": c.text})
+    assert good == [] and dropped == 1
+    c2 = SimpleNamespace(text="India revenue grew 6% year-on-year.", page=1)
+    ok = {"claims": [{"metric": "revenue", "text": "India revenue grew 6% year-on-year", "evidence_id": "e1"}]}
+    good, dropped = filings.validate_llm_claims(ok, {"e1": c2}, {"e1": c2.text})
+    assert len(good) == 1 and dropped == 0

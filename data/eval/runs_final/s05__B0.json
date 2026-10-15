@@ -1,0 +1,141 @@
+{
+ "run_id": "s05-B0",
+ "created_at": "2026-10-15T15:06:21.310470",
+ "symbol": "TCS",
+ "profile_id": "unassigned",
+ "as_of": "2026-10-15",
+ "config": {
+  "system": "B0"
+ },
+ "signals": [],
+ "findings": [
+  {
+   "agent": "single_agent",
+   "status": "complete",
+   "claims": [
+    {
+     "claim_id": "b1",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "As of 2026, TCS reported an operating margin of 25.0% (P2)",
+     "evidence_ids": [
+      "doc:TCS-AR-FY26:p058:c03"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b2",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "TCS closed the year with a strong and resilient order book of U S$ 40.7 billion (P2)",
+     "evidence_ids": [
+      "doc:TCS-AR-FY26:p058:c03"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b3",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "The company recorded a compound annual growth rate (CAGR) of 10.2% over the past five financial years (P3)",
+     "evidence_ids": [
+      "doc:TCS-AR-FY26:p024:c02"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b4",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "neutral",
+     "claim_type": "factual",
+     "text": "Revenue from time and material and job contracts is recognised on output basis measured by units delivered, efforts expended, number of transactions processed, etc. (P5)",
+     "evidence_ids": [
+      "doc:TCS-AR-FY26:p290:c02"
+     ],
+     "confidence": 0.5
+    }
+   ],
+   "latency_ms": 25026.0,
+   "limitations": [],
+   "error": null
+  }
+ ],
+ "efce": {
+  "status": "complete",
+  "supported": [
+   {
+    "claim_id": "b1",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "As of 2026, TCS reported an operating margin of 25.0% (P2)",
+    "evidence_ids": [
+     "doc:TCS-AR-FY26:p058:c03"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b2",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "TCS closed the year with a strong and resilient order book of U S$ 40.7 billion (P2)",
+    "evidence_ids": [
+     "doc:TCS-AR-FY26:p058:c03"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b3",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "The company recorded a compound annual growth rate (CAGR) of 10.2% over the past five financial years (P3)",
+    "evidence_ids": [
+     "doc:TCS-AR-FY26:p024:c02"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b4",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "neutral",
+    "claim_type": "factual",
+    "text": "Revenue from time and material and job contracts is recognised on output basis measured by units delivered, efforts expended, number of transactions processed, etc. (P5)",
+    "evidence_ids": [
+     "doc:TCS-AR-FY26:p290:c02"
+    ],
+    "confidence": 0.5
+   }
+  ],
+  "conflicts": [],
+  "abstained": [],
+  "rejected": []
+ },
+ "metrics": {
+  "end_to_end_ms": 25026.0,
+  "agents_ms": 25026.0,
+  "agents_complete": 1.0
+ },
+ "system": "B0",
+ "scenario": "s05"
+}

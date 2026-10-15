@@ -1,0 +1,161 @@
+{
+ "run_id": "s04-B2",
+ "created_at": "2026-10-15T15:05:26.499143",
+ "symbol": "INFY",
+ "profile_id": "unassigned",
+ "as_of": "2026-10-15",
+ "config": {},
+ "signals": [
+  {
+   "symbol": "INFY",
+   "as_of": "2026-10-15",
+   "name": "momentum",
+   "value": 0.010214,
+   "unit": "pct_return",
+   "label": "neutral",
+   "confidence": 0.5,
+   "method": "20-trading-day return, thresholds +/-3%",
+   "window_start": "2026-09-15",
+   "window_end": "2026-10-14",
+   "evidence_ids": [
+    "px:INFY:2026-10-14",
+    "px:INFY:2026-09-15"
+   ],
+   "data_status": "historical",
+   "status": "complete"
+  },
+  {
+   "symbol": "INFY",
+   "as_of": "2026-10-15",
+   "name": "volume_anomaly",
+   "value": 2.1929,
+   "unit": "rolling_z_score",
+   "label": "unusual",
+   "confidence": 0.619,
+   "method": "z-score of volume against the previous 20 sessions, unusual if |z| >= 2.0",
+   "window_start": "2026-09-15",
+   "window_end": "2026-10-14",
+   "evidence_ids": [
+    "px:INFY:2026-10-14"
+   ],
+   "data_status": "historical",
+   "status": "complete"
+  },
+  {
+   "symbol": "INFY",
+   "as_of": "2026-10-15",
+   "name": "sentiment",
+   "value": null,
+   "unit": "score",
+   "label": "unavailable",
+   "confidence": 0.0,
+   "method": "word-list sentiment score, thresholds +/-0.2",
+   "window_start": null,
+   "window_end": null,
+   "evidence_ids": [],
+   "data_status": "unavailable",
+   "status": "failed"
+  }
+ ],
+ "findings": [
+  {
+   "agent": "technical",
+   "status": "complete",
+   "claims": [
+    {
+     "claim_id": "t1",
+     "entity": "INFY",
+     "metric_or_event": "price_momentum",
+     "period": "2026-10-15",
+     "direction": "neutral",
+     "claim_type": "factual",
+     "text": "20-trading-day return is +1.02% (neutral).",
+     "evidence_ids": [
+      "px:INFY:2026-10-14"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "t2",
+     "entity": "INFY",
+     "metric_or_event": "volume_anomaly",
+     "period": "2026-10-15",
+     "direction": "uncertain",
+     "claim_type": "factual",
+     "text": "Volume z-score is 2.19 against the prior 20 sessions (unusual).",
+     "evidence_ids": [
+      "px:INFY:2026-10-14"
+     ],
+     "confidence": 0.619
+    }
+   ],
+   "limitations": [],
+   "latency_ms": 20.015499998407904,
+   "error": null
+  },
+  {
+   "agent": "sentiment",
+   "status": "failed",
+   "claims": [],
+   "limitations": [
+    "no citable text available for sentiment (failed)"
+   ],
+   "latency_ms": 165.8845999991172,
+   "error": "no citable text available for sentiment (failed)"
+  },
+  {
+   "agent": "filings",
+   "status": "failed",
+   "claims": [],
+   "limitations": [
+    "no relevant passages retrieved for any topic"
+   ],
+   "latency_ms": 234.12589999861666,
+   "error": "no relevant passages retrieved for any topic"
+  }
+ ],
+ "efce": {
+  "status": "complete",
+  "supported": [
+   {
+    "claim_id": "t1",
+    "entity": "INFY",
+    "metric_or_event": "price_momentum",
+    "period": "2026-10-15",
+    "direction": "neutral",
+    "claim_type": "factual",
+    "text": "20-trading-day return is +1.02% (neutral).",
+    "evidence_ids": [
+     "px:INFY:2026-10-14"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "t2",
+    "entity": "INFY",
+    "metric_or_event": "volume_anomaly",
+    "period": "2026-10-15",
+    "direction": "uncertain",
+    "claim_type": "factual",
+    "text": "Volume z-score is 2.19 against the prior 20 sessions (unusual).",
+    "evidence_ids": [
+     "px:INFY:2026-10-14"
+    ],
+    "confidence": 0.619
+   }
+  ],
+  "conflicts": [],
+  "abstained": [],
+  "rejected": []
+ },
+ "metrics": {
+  "latency_ms_technical": 20.0,
+  "latency_ms_sentiment": 165.9,
+  "latency_ms_filings": 234.1,
+  "agents_ms": 241.8,
+  "end_to_end_ms": 241.9,
+  "agents_complete": 1.0
+ },
+ "system": "B2",
+ "scenario": "s04"
+}

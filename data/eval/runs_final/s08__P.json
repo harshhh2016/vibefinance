@@ -1,0 +1,99 @@
+{
+ "run_id": "s08-P",
+ "created_at": "2026-10-15T15:07:06.414139",
+ "symbol": "SYN",
+ "profile_id": "unassigned",
+ "as_of": "2026-10-15",
+ "config": {},
+ "signals": [],
+ "findings": [
+  {
+   "agent": "filings",
+   "status": "complete",
+   "claims": [
+    {
+     "claim_id": "c1",
+     "entity": "SYN",
+     "metric_or_event": "revenue_growth",
+     "period": "FY2026",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "SYN revenue grew 8% in FY2026.",
+     "evidence_ids": [
+      "doc:SYN-TEST:p001:c01"
+     ],
+     "confidence": 0.8
+    },
+    {
+     "claim_id": "c2",
+     "entity": "SYN",
+     "metric_or_event": "revenue_growth",
+     "period": "FY2026",
+     "direction": "negative",
+     "claim_type": "factual",
+     "text": "SYN revenue fell 8% in FY2026.",
+     "evidence_ids": [
+      "doc:SYN-TEST:p001:c02"
+     ],
+     "confidence": 0.8
+    }
+   ],
+   "limitations": [
+    "synthetic scenario"
+   ],
+   "latency_ms": 0.0,
+   "error": null
+  }
+ ],
+ "efce": {
+  "status": "conflict_unresolved",
+  "supported": [
+   {
+    "claim_id": "c1",
+    "entity": "SYN",
+    "metric_or_event": "revenue_growth",
+    "period": "FY2026",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "SYN revenue grew 8% in FY2026.",
+    "evidence_ids": [
+     "doc:SYN-TEST:p001:c01"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "claim_id": "c2",
+    "entity": "SYN",
+    "metric_or_event": "revenue_growth",
+    "period": "FY2026",
+    "direction": "negative",
+    "claim_type": "factual",
+    "text": "SYN revenue fell 8% in FY2026.",
+    "evidence_ids": [
+     "doc:SYN-TEST:p001:c02"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "conflicts": [
+   {
+    "kind": "factual_contradiction",
+    "claim_ids": [
+     "c1",
+     "c2"
+    ],
+    "explanation": "SYN revenue_growth: opposite factual claims for the same period (FY2026)."
+   }
+  ],
+  "abstained": [],
+  "rejected": []
+ },
+ "metrics": {
+  "latency_ms_filings": 0.0,
+  "agents_ms": 0.0,
+  "end_to_end_ms": 0.1,
+  "agents_complete": 1.0
+ },
+ "system": "P",
+ "scenario": "s08"
+}

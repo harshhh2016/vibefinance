@@ -1,0 +1,141 @@
+{
+ "run_id": "s04-B0",
+ "created_at": "2026-10-15T15:05:43.349576",
+ "symbol": "INFY",
+ "profile_id": "unassigned",
+ "as_of": "2026-10-15",
+ "config": {
+  "system": "B0"
+ },
+ "signals": [],
+ "findings": [
+  {
+   "agent": "single_agent",
+   "status": "complete",
+   "claims": [
+    {
+     "claim_id": "b1",
+     "entity": "INFY",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "As of 2026-10-15, the open price of INFY is $1073.699951171875.",
+     "evidence_ids": [
+      "px:INFY:2026-10-14"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b2",
+     "entity": "INFY",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "As of 2026-10-15, the high price of INFY is $1096.4000244140625.",
+     "evidence_ids": [
+      "px:INFY:2026-10-14"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b3",
+     "entity": "INFY",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "As of 2026-10-15, the low price of INFY is $1069.449951171875.",
+     "evidence_ids": [
+      "px:INFY:2026-10-14"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b4",
+     "entity": "INFY",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "As of 2026-10-15, the volume of INFY is 22108754.",
+     "evidence_ids": [
+      "px:INFY:2026-10-14"
+     ],
+     "confidence": 0.5
+    }
+   ],
+   "latency_ms": 16850.3,
+   "limitations": [],
+   "error": null
+  }
+ ],
+ "efce": {
+  "status": "complete",
+  "supported": [
+   {
+    "claim_id": "b1",
+    "entity": "INFY",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "As of 2026-10-15, the open price of INFY is $1073.699951171875.",
+    "evidence_ids": [
+     "px:INFY:2026-10-14"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b2",
+    "entity": "INFY",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "As of 2026-10-15, the high price of INFY is $1096.4000244140625.",
+    "evidence_ids": [
+     "px:INFY:2026-10-14"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b3",
+    "entity": "INFY",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "As of 2026-10-15, the low price of INFY is $1069.449951171875.",
+    "evidence_ids": [
+     "px:INFY:2026-10-14"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b4",
+    "entity": "INFY",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "As of 2026-10-15, the volume of INFY is 22108754.",
+    "evidence_ids": [
+     "px:INFY:2026-10-14"
+    ],
+    "confidence": 0.5
+   }
+  ],
+  "conflicts": [],
+  "abstained": [],
+  "rejected": []
+ },
+ "metrics": {
+  "end_to_end_ms": 16850.3,
+  "agents_ms": 16850.3,
+  "agents_complete": 1.0
+ },
+ "system": "B0",
+ "scenario": "s04"
+}

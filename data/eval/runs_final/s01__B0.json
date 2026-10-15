@@ -1,0 +1,141 @@
+{
+ "run_id": "s01-B0",
+ "created_at": "2026-10-15T15:04:35.366196",
+ "symbol": "TCS",
+ "profile_id": "unassigned",
+ "as_of": "2026-10-15",
+ "config": {
+  "system": "B0"
+ },
+ "signals": [],
+ "findings": [
+  {
+   "agent": "single_agent",
+   "status": "complete",
+   "claims": [
+    {
+     "claim_id": "b1",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "As of 2026-10-15, TCS has a latest price of 2304.89990234375, as reported by PX.",
+     "evidence_ids": [
+      "px:TCS:2026-10-14"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b2",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "TCS reported an operating margin of 25.0% in FY 2026, up from 24.3% the previous year, as stated in P2.",
+     "evidence_ids": [
+      "doc:TCS-AR-FY26:p058:c03"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b3",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "TCS has a compound annual growth rate (CAGR) of 10.2% over the past five financial years, as reported in P3.",
+     "evidence_ids": [
+      "doc:TCS-AR-FY26:p024:c02"
+     ],
+     "confidence": 0.5
+    },
+    {
+     "claim_id": "b4",
+     "entity": "TCS",
+     "metric_or_event": "single_agent_claim",
+     "period": "2026-10-15",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "TCS reported an operating margin of 25.0% in FY 2026, an improvement of 70 basis points compared to the previous year, as stated in P2.",
+     "evidence_ids": [
+      "doc:TCS-AR-FY26:p058:c03"
+     ],
+     "confidence": 0.5
+    }
+   ],
+   "latency_ms": 28177.2,
+   "limitations": [],
+   "error": null
+  }
+ ],
+ "efce": {
+  "status": "complete",
+  "supported": [
+   {
+    "claim_id": "b1",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "As of 2026-10-15, TCS has a latest price of 2304.89990234375, as reported by PX.",
+    "evidence_ids": [
+     "px:TCS:2026-10-14"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b2",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "TCS reported an operating margin of 25.0% in FY 2026, up from 24.3% the previous year, as stated in P2.",
+    "evidence_ids": [
+     "doc:TCS-AR-FY26:p058:c03"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b3",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "TCS has a compound annual growth rate (CAGR) of 10.2% over the past five financial years, as reported in P3.",
+    "evidence_ids": [
+     "doc:TCS-AR-FY26:p024:c02"
+    ],
+    "confidence": 0.5
+   },
+   {
+    "claim_id": "b4",
+    "entity": "TCS",
+    "metric_or_event": "single_agent_claim",
+    "period": "2026-10-15",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "TCS reported an operating margin of 25.0% in FY 2026, an improvement of 70 basis points compared to the previous year, as stated in P2.",
+    "evidence_ids": [
+     "doc:TCS-AR-FY26:p058:c03"
+    ],
+    "confidence": 0.5
+   }
+  ],
+  "conflicts": [],
+  "abstained": [],
+  "rejected": []
+ },
+ "metrics": {
+  "end_to_end_ms": 28177.2,
+  "agents_ms": 28177.2,
+  "agents_complete": 1.0
+ },
+ "system": "B0",
+ "scenario": "s01"
+}

@@ -1,0 +1,577 @@
+{
+ "s01": {
+  "P": {
+   "passed": 4,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 20058.0
+  },
+  "B1": {
+   "passed": 4,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 20056.1
+  },
+  "B2": {
+   "passed": 4,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 20056.4
+  },
+  "B0": {
+   "passed": 3,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "agents_complete_min"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 28177.2
+  }
+ },
+ "s02": {
+  "P": {
+   "passed": 2,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 13549.7
+  },
+  "B1": {
+   "passed": 2,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 13549.3
+  },
+  "B2": {
+   "passed": 2,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 13549.3
+  },
+  "B0": {
+   "passed": 2,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [
+    [
+     "b1",
+     "10"
+    ],
+    [
+     "b1",
+     "7"
+    ]
+   ],
+   "silent_failures": [],
+   "latency_ms": 22181.3
+  }
+ },
+ "s03": {
+  "P": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 279.2
+  },
+  "B1": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 279.1
+  },
+  "B2": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 279.1
+  },
+  "B0": {
+   "passed": 2,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "must_report_missing_documents"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 14726.4
+  }
+ },
+ "s04": {
+  "P": {
+   "passed": 4,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 241.9
+  },
+  "B1": {
+   "passed": 3,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "efce_status"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 241.9
+  },
+  "B2": {
+   "passed": 3,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "efce_status"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 241.9
+  },
+  "B0": {
+   "passed": 2,
+   "failed": 2,
+   "not_scorable": 0,
+   "failed_checks": [
+    "must_report_missing_documents",
+    "efce_status"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 16850.3
+  }
+ },
+ "s05": {
+  "P": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 12873.1
+  },
+  "B1": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 12873.0
+  },
+  "B2": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 12873.0
+  },
+  "B0": {
+   "passed": 2,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "must_report_missing_prices"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 25026.0
+  }
+ },
+ "s06": {
+  "P": {
+   "passed": 2,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 13261.3
+  },
+  "B1": {
+   "passed": 0,
+   "failed": 2,
+   "not_scorable": 0,
+   "failed_checks": [
+    "price_claims_presented_as_current",
+    "rejected_reasons_include"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 13258.6
+  },
+  "B2": {
+   "passed": 0,
+   "failed": 2,
+   "not_scorable": 0,
+   "failed_checks": [
+    "price_claims_presented_as_current",
+    "rejected_reasons_include"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 13258.6
+  },
+  "B0": {
+   "passed": 1,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "rejected_reasons_include"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [
+    [
+     "b1",
+     "10"
+    ],
+    [
+     "b1",
+     "30"
+    ]
+   ],
+   "silent_failures": [],
+   "latency_ms": 31626.4
+  }
+ },
+ "s07": {
+  "P": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 0.2
+  },
+  "B1": {
+   "passed": 2,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "conflict_kinds"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 0.0
+  },
+  "B2": {
+   "passed": 2,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "conflict_kinds"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 0.0
+  },
+  "B0": "n/a (scenario injects faults or claims into the multi-agent pipeline)"
+ },
+ "s08": {
+  "P": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 0.1
+  },
+  "B1": {
+   "passed": 2,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "conflict_kinds"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 0.0
+  },
+  "B2": {
+   "passed": 0,
+   "failed": 3,
+   "not_scorable": 0,
+   "failed_checks": [
+    "conflict_kinds",
+    "both_sides_kept",
+    "winner_picked"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 32.2
+  },
+  "B0": "n/a (scenario injects faults or claims into the multi-agent pipeline)"
+ },
+ "s09": {
+  "P": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 31115.3
+  },
+  "B1": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 31115.0
+  },
+  "B2": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 31115.0
+  },
+  "B0": {
+   "passed": 2,
+   "failed": 1,
+   "not_scorable": 0,
+   "failed_checks": [
+    "passage_flagged_in_output"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 27883.9
+  }
+ },
+ "s10": {
+  "P": {
+   "passed": 2,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 24020.3
+  },
+  "B1": {
+   "passed": 0,
+   "failed": 2,
+   "not_scorable": 0,
+   "failed_checks": [
+    "rejected_reasons_include",
+    "claim_in_supported"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 0.8888888888888888,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 24019.8
+  },
+  "B2": {
+   "passed": 0,
+   "failed": 2,
+   "not_scorable": 0,
+   "failed_checks": [
+    "rejected_reasons_include",
+    "claim_in_supported"
+   ],
+   "unscorable_checks": [],
+   "citation_validity": 0.8888888888888888,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 24019.8
+  },
+  "B0": "n/a (scenario injects faults or claims into the multi-agent pipeline)"
+ },
+ "s11": {
+  "P": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 36687.4
+  },
+  "B1": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 36687.3
+  },
+  "B2": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 36687.3
+  },
+  "B0": "n/a (scenario injects faults or claims into the multi-agent pipeline)"
+ },
+ "s12": {
+  "P": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 23506.0
+  },
+  "B1": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 23505.9
+  },
+  "B2": {
+   "passed": 3,
+   "failed": 0,
+   "not_scorable": 0,
+   "failed_checks": [],
+   "unscorable_checks": [],
+   "citation_validity": 1.0,
+   "unsupported_numbers": [],
+   "silent_failures": [],
+   "latency_ms": 23505.9
+  },
+  "B0": "n/a (scenario injects faults or claims into the multi-agent pipeline)"
+ },
+ "s13": {
+  "P": {
+   "checks": {
+    "signals_identical": true,
+    "evidence_ids_identical": true,
+    "conflicts_identical": true,
+    "efce_status_identical": true,
+    "risk_notes_differ": true
+   },
+   "passed": 5,
+   "failed": 0,
+   "not_scorable": 0
+  },
+  "B1": "n/a (no personalization layer)",
+  "B2": "n/a (no personalization layer)"
+ }
+}

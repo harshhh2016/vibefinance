@@ -1,0 +1,164 @@
+{
+ "run_id": "s03-P",
+ "created_at": "2026-10-15T15:05:11.482159",
+ "symbol": "TCS",
+ "profile_id": "unassigned",
+ "as_of": "2026-05-01",
+ "config": {},
+ "signals": [
+  {
+   "symbol": "TCS",
+   "as_of": "2026-05-01",
+   "name": "momentum",
+   "value": 0.048752,
+   "unit": "pct_return",
+   "label": "positive",
+   "confidence": 0.825,
+   "method": "20-trading-day return, thresholds +/-3%",
+   "window_start": "2026-03-30",
+   "window_end": "2026-04-30",
+   "evidence_ids": [
+    "px:TCS:2026-04-30",
+    "px:TCS:2026-03-30"
+   ],
+   "data_status": "historical",
+   "status": "complete"
+  },
+  {
+   "symbol": "TCS",
+   "as_of": "2026-05-01",
+   "name": "volume_anomaly",
+   "value": -0.3027,
+   "unit": "rolling_z_score",
+   "label": "usual",
+   "confidence": 0.5,
+   "method": "z-score of volume against the previous 20 sessions, unusual if |z| >= 2.0",
+   "window_start": "2026-03-30",
+   "window_end": "2026-04-30",
+   "evidence_ids": [
+    "px:TCS:2026-04-30"
+   ],
+   "data_status": "historical",
+   "status": "complete"
+  },
+  {
+   "symbol": "TCS",
+   "as_of": "2026-05-01",
+   "name": "sentiment",
+   "value": null,
+   "unit": "score",
+   "label": "unavailable",
+   "confidence": 0.0,
+   "method": "word-list sentiment score, thresholds +/-0.2",
+   "window_start": null,
+   "window_end": null,
+   "evidence_ids": [],
+   "data_status": "unavailable",
+   "status": "failed"
+  }
+ ],
+ "findings": [
+  {
+   "agent": "technical",
+   "status": "complete",
+   "claims": [
+    {
+     "claim_id": "t1",
+     "entity": "TCS",
+     "metric_or_event": "price_momentum",
+     "period": "2026-05-01",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "20-trading-day return is +4.88% (positive).",
+     "evidence_ids": [
+      "px:TCS:2026-04-30"
+     ],
+     "confidence": 0.825
+    },
+    {
+     "claim_id": "t2",
+     "entity": "TCS",
+     "metric_or_event": "volume_anomaly",
+     "period": "2026-05-01",
+     "direction": "neutral",
+     "claim_type": "factual",
+     "text": "Volume z-score is -0.30 against the prior 20 sessions (usual).",
+     "evidence_ids": [
+      "px:TCS:2026-04-30"
+     ],
+     "confidence": 0.5
+    }
+   ],
+   "limitations": [],
+   "latency_ms": 22.92669999951613,
+   "error": null
+  },
+  {
+   "agent": "sentiment",
+   "status": "failed",
+   "claims": [],
+   "limitations": [
+    "no citable text available for sentiment (failed)"
+   ],
+   "latency_ms": 182.42610000015702,
+   "error": "no citable text available for sentiment (failed)"
+  },
+  {
+   "agent": "filings",
+   "status": "failed",
+   "claims": [],
+   "limitations": [
+    "no relevant passages retrieved for any topic"
+   ],
+   "latency_ms": 249.79290000010224,
+   "error": "no relevant passages retrieved for any topic"
+  }
+ ],
+ "efce": {
+  "status": "abstained_or_limited",
+  "supported": [
+   {
+    "claim_id": "t1",
+    "entity": "TCS",
+    "metric_or_event": "price_momentum",
+    "period": "2026-05-01",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "20-trading-day return is +4.88% (positive).",
+    "evidence_ids": [
+     "px:TCS:2026-04-30"
+    ],
+    "confidence": 0.825
+   },
+   {
+    "claim_id": "t2",
+    "entity": "TCS",
+    "metric_or_event": "volume_anomaly",
+    "period": "2026-05-01",
+    "direction": "neutral",
+    "claim_type": "factual",
+    "text": "Volume z-score is -0.30 against the prior 20 sessions (usual).",
+    "evidence_ids": [
+     "px:TCS:2026-04-30"
+    ],
+    "confidence": 0.5
+   }
+  ],
+  "conflicts": [],
+  "abstained": [
+   "sentiment:failed",
+   "filings:failed"
+  ],
+  "rejected": []
+ },
+ "metrics": {
+  "latency_ms_technical": 22.9,
+  "latency_ms_sentiment": 182.4,
+  "latency_ms_filings": 249.8,
+  "agents_ms": 279.0,
+  "end_to_end_ms": 279.2,
+  "agents_complete": 1.0
+ },
+ "system": "P",
+ "scenario": "s03"
+}

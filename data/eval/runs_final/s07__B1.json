@@ -1,0 +1,144 @@
+{
+ "run_id": "s07-B1",
+ "created_at": "2026-10-15T15:07:06.347980",
+ "symbol": "TCS",
+ "profile_id": "unassigned",
+ "as_of": "2026-10-15",
+ "config": {},
+ "signals": [],
+ "findings": [
+  {
+   "agent": "filings",
+   "status": "complete",
+   "claims": [
+    {
+     "claim_id": "i1",
+     "entity": "TCS",
+     "metric_or_event": "india_revenue_growth",
+     "period": "Q2FY27_QoQ_CC",
+     "direction": "negative",
+     "claim_type": "factual",
+     "text": "Press release table (Growth by Markets), India: Q-o-Q CC growth -10.3%",
+     "evidence_ids": [
+      "doc:TCS-PR-Q2FY27:p002:c01"
+     ],
+     "confidence": 0.9
+    },
+    {
+     "claim_id": "i2",
+     "entity": "TCS",
+     "metric_or_event": "india_revenue_growth",
+     "period": "Q2FY27_YoY_CC",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "Press release table (Growth by Markets), India: Y-o-Y CC growth +6.0%",
+     "evidence_ids": [
+      "doc:TCS-PR-Q2FY27:p002:c01"
+     ],
+     "confidence": 0.9
+    },
+    {
+     "claim_id": "i3",
+     "entity": "TCS",
+     "metric_or_event": "india_revenue_growth",
+     "period": "Q2FY27_YoY",
+     "direction": "positive",
+     "claim_type": "factual",
+     "text": "CEO on the earnings call: \"India revenue grew 6%\"",
+     "evidence_ids": [
+      "doc:TCS-TR-Q2FY27:p002:c01"
+     ],
+     "confidence": 0.8
+    },
+    {
+     "claim_id": "i4",
+     "entity": "TCS",
+     "metric_or_event": "india_revenue_growth",
+     "period": "unspecified",
+     "direction": "negative",
+     "claim_type": "analytical",
+     "text": "Analyst on the call: \"India revenue decline by about 10%\" (no period stated)",
+     "evidence_ids": [
+      "doc:TCS-TR-Q2FY27:p012:c02"
+     ],
+     "confidence": 0.5
+    }
+   ],
+   "limitations": [
+    "i3 period read as Y-o-Y: the CEO sentence ends 'year-on-year' and 6% matches the table's Y-o-Y figure",
+    "i4 period not stated by the analyst; it matches the table's Q-o-Q figure but is not labelled as such",
+    "table share columns (India 5.8 -> 5.5) do not reconcile with +6.0% Y-o-Y; quoted as printed"
+   ],
+   "latency_ms": 0.0,
+   "error": null
+  }
+ ],
+ "efce": {
+  "status": "complete",
+  "supported": [
+   {
+    "claim_id": "i1",
+    "entity": "TCS",
+    "metric_or_event": "india_revenue_growth",
+    "period": "Q2FY27_QoQ_CC",
+    "direction": "negative",
+    "claim_type": "factual",
+    "text": "Press release table (Growth by Markets), India: Q-o-Q CC growth -10.3%",
+    "evidence_ids": [
+     "doc:TCS-PR-Q2FY27:p002:c01"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "claim_id": "i2",
+    "entity": "TCS",
+    "metric_or_event": "india_revenue_growth",
+    "period": "Q2FY27_YoY_CC",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "Press release table (Growth by Markets), India: Y-o-Y CC growth +6.0%",
+    "evidence_ids": [
+     "doc:TCS-PR-Q2FY27:p002:c01"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "claim_id": "i3",
+    "entity": "TCS",
+    "metric_or_event": "india_revenue_growth",
+    "period": "Q2FY27_YoY",
+    "direction": "positive",
+    "claim_type": "factual",
+    "text": "CEO on the earnings call: \"India revenue grew 6%\"",
+    "evidence_ids": [
+     "doc:TCS-TR-Q2FY27:p002:c01"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "claim_id": "i4",
+    "entity": "TCS",
+    "metric_or_event": "india_revenue_growth",
+    "period": "unspecified",
+    "direction": "negative",
+    "claim_type": "analytical",
+    "text": "Analyst on the call: \"India revenue decline by about 10%\" (no period stated)",
+    "evidence_ids": [
+     "doc:TCS-TR-Q2FY27:p012:c02"
+    ],
+    "confidence": 0.5
+   }
+  ],
+  "conflicts": [],
+  "abstained": [],
+  "rejected": []
+ },
+ "metrics": {
+  "latency_ms_filings": 0.0,
+  "agents_ms": 0.0,
+  "end_to_end_ms": 0.0,
+  "agents_complete": 1.0
+ },
+ "system": "B1",
+ "scenario": "s07"
+}

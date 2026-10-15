@@ -65,3 +65,17 @@ def test_prices_use_latest_close_on_or_before_as_of(tmp_path):
 
 def test_missing_price_file_is_skipped(tmp_path):
     assert load_latest_prices(["NOPE"], date(2026, 10, 14), tmp_path) == {}
+
+
+def test_missing_filings_run_is_degraded_and_fully_cited():
+    from pathlib import Path
+    from src.contracts import RunRecord
+    rec = RunRecord.model_validate_json(
+        (Path(__file__).parent / "fixtures" / "infy_missing_filings_run.json").read_text(encoding="utf-8"))
+    status = {f.agent: f.status for f in rec.findings}
+    assert status == {"technical": "complete", "sentiment": "failed", "filings": "failed"}
+    assert all(f.error for f in rec.findings if f.status == "failed")
+    assert rec.efce.status == "abstained_or_limited"
+    assert "sentiment:failed" in rec.efce.abstained and "filings:failed" in rec.efce.abstained
+    assert len(rec.efce.rejected) == 0
+    assert all(c.evidence_ids for f in rec.findings for c in f.claims)

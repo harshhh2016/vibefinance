@@ -1,0 +1,211 @@
+{
+  "run_id": "run-20261015-141515",
+  "created_at": "2026-10-15T14:15:15.638706",
+  "symbol": "INFY",
+  "profile_id": "aggressive",
+  "as_of": "2026-10-15",
+  "config": {
+    "model": "none",
+    "temperature": 0,
+    "top_k": 3,
+    "timeout_s": 240.0,
+    "portfolio": {
+      "profile_id": "aggressive",
+      "risk_preference": "high",
+      "synthetic_profile": true,
+      "total_value": 1028109.99,
+      "weights": {
+        "TCS": 0.448376,
+        "INFY": 0.158738,
+        "RELIANCE": 0.114248,
+        "SBIN": 0.278638
+      },
+      "sector_weights": {
+        "IT": 0.607114,
+        "Energy": 0.114248,
+        "Banking": 0.278638
+      },
+      "hhi": 0.31693,
+      "breaches": [
+        {
+          "kind": "position",
+          "name": "TCS",
+          "weight_pct": 44.83761339124799,
+          "limit_pct": 35.0
+        },
+        {
+          "kind": "sector",
+          "name": "IT",
+          "weight_pct": 60.711401441676635,
+          "limit_pct": 60.0
+        }
+      ],
+      "missing_prices": [],
+      "price_dates": {
+        "INFY": "2026-10-14",
+        "RELIANCE": "2026-10-14",
+        "SBIN": "2026-10-14",
+        "TCS": "2026-10-14"
+      },
+      "risk_note": "Higher risk tolerance: concentration is acceptable only while it stays inside your own limits. Horizon is 24 months. INFY is 15.9% of this portfolio. Position TCS is 44.8%, above your 35.0% limit. Sector IT is 60.7%, above your 60.0% limit. Concentration (HHI) is 0.32: highly concentrated."
+    }
+  },
+  "signals": [
+    {
+      "symbol": "INFY",
+      "as_of": "2026-10-15",
+      "name": "momentum",
+      "value": 0.010214,
+      "unit": "pct_return",
+      "label": "neutral",
+      "confidence": 0.5,
+      "method": "20-trading-day return, thresholds +/-3%",
+      "window_start": "2026-09-15",
+      "window_end": "2026-10-14",
+      "evidence_ids": [
+        "px:INFY:2026-10-14",
+        "px:INFY:2026-09-15"
+      ],
+      "data_status": "historical",
+      "status": "complete"
+    },
+    {
+      "symbol": "INFY",
+      "as_of": "2026-10-15",
+      "name": "volume_anomaly",
+      "value": 2.1929,
+      "unit": "rolling_z_score",
+      "label": "unusual",
+      "confidence": 0.619,
+      "method": "z-score of volume against the previous 20 sessions, unusual if |z| >= 2.0",
+      "window_start": "2026-09-15",
+      "window_end": "2026-10-14",
+      "evidence_ids": [
+        "px:INFY:2026-10-14"
+      ],
+      "data_status": "historical",
+      "status": "complete"
+    },
+    {
+      "symbol": "INFY",
+      "as_of": "2026-10-15",
+      "name": "sentiment",
+      "value": null,
+      "unit": "score",
+      "label": "unavailable",
+      "confidence": 0.0,
+      "method": "word-list sentiment score, thresholds +/-0.2",
+      "window_start": null,
+      "window_end": null,
+      "evidence_ids": [],
+      "data_status": "unavailable",
+      "status": "failed"
+    }
+  ],
+  "findings": [
+    {
+      "agent": "technical",
+      "status": "complete",
+      "claims": [
+        {
+          "claim_id": "t1",
+          "entity": "INFY",
+          "metric_or_event": "price_momentum",
+          "period": "2026-10-15",
+          "direction": "neutral",
+          "claim_type": "factual",
+          "text": "20-trading-day return is +1.02% (neutral).",
+          "evidence_ids": [
+            "px:INFY:2026-10-14"
+          ],
+          "confidence": 0.5
+        },
+        {
+          "claim_id": "t2",
+          "entity": "INFY",
+          "metric_or_event": "volume_anomaly",
+          "period": "2026-10-15",
+          "direction": "uncertain",
+          "claim_type": "factual",
+          "text": "Volume z-score is 2.19 against the prior 20 sessions (unusual).",
+          "evidence_ids": [
+            "px:INFY:2026-10-14"
+          ],
+          "confidence": 0.619
+        }
+      ],
+      "limitations": [],
+      "latency_ms": 101.8168999999034,
+      "error": null
+    },
+    {
+      "agent": "sentiment",
+      "status": "failed",
+      "claims": [],
+      "limitations": [
+        "no citable text available for sentiment (failed)"
+      ],
+      "latency_ms": 173.94549999880837,
+      "error": "no citable text available for sentiment (failed)"
+    },
+    {
+      "agent": "filings",
+      "status": "failed",
+      "claims": [],
+      "limitations": [
+        "no relevant passages retrieved for any topic"
+      ],
+      "latency_ms": 210.34870000039518,
+      "error": "no relevant passages retrieved for any topic"
+    }
+  ],
+  "efce": {
+    "status": "abstained_or_limited",
+    "supported": [
+      {
+        "claim_id": "t1",
+        "entity": "INFY",
+        "metric_or_event": "price_momentum",
+        "period": "2026-10-15",
+        "direction": "neutral",
+        "claim_type": "factual",
+        "text": "20-trading-day return is +1.02% (neutral).",
+        "evidence_ids": [
+          "px:INFY:2026-10-14"
+        ],
+        "confidence": 0.5
+      },
+      {
+        "claim_id": "t2",
+        "entity": "INFY",
+        "metric_or_event": "volume_anomaly",
+        "period": "2026-10-15",
+        "direction": "uncertain",
+        "claim_type": "factual",
+        "text": "Volume z-score is 2.19 against the prior 20 sessions (unusual).",
+        "evidence_ids": [
+          "px:INFY:2026-10-14"
+        ],
+        "confidence": 0.619
+      }
+    ],
+    "conflicts": [],
+    "abstained": [
+      "sentiment:failed",
+      "filings:failed"
+    ],
+    "rejected": []
+  },
+  "metrics": {
+    "latency_ms_technical": 101.8,
+    "latency_ms_sentiment": 173.9,
+    "latency_ms_filings": 210.3,
+    "end_to_end_ms": 219.1,
+    "agents_complete": 1.0,
+    "citation_pass_rate": 1.0,
+    "hhi": 0.31693,
+    "portfolio_breaches": 2.0,
+    "portfolio_total_value": 1028109.99
+  },
+  "data_status": "historical"
+}

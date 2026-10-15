@@ -9,7 +9,9 @@ import streamlit as st
 from src.contracts import Profile, RunRecord
 from src.signals import get_signals
 from src.pipeline import run_analysis
-
+from src.ui_panels import render_metrics, render_portfolio
+from src.evidence_view import resolve, resolve_many
+from src.rag.generate_answer import generate_answer
 
 # ============================================================
 # CONFIGURATION
@@ -734,17 +736,43 @@ def display_price_chart(data, chart_type="Line"):
 
 
 def display_evidence_ids(evidence_ids):
-    """Display the evidence identifiers associated with a claim."""
+    """Display evidence IDs with expandable source details."""
 
     if not evidence_ids:
-        st.caption("No evidence IDs provided.")
+        st.caption("No evidence IDs available.")
         return
 
-    st.markdown("**Evidence IDs**")
+    resolved = resolve_many(evidence_ids)
 
-    for evidence_id in evidence_ids:
-        st.code(evidence_id)
+    for item in resolved:
+        with st.expander(
+            f"{'📄' if item['kind'] == 'doc' else '📈' if item['kind'] == 'price' else '⚠️'} "
+            f"{item['title']}"
+        ):
+            st.caption(f"Evidence ID: {item['evidence_id']}")
 
+            if not item["found"]:
+                st.warning(
+                    "This evidence could not be resolved. "
+                    "The source may be missing or its ID may be invalid."
+                )
+                continue
+
+            if item["date"]:
+                st.caption(f"Evidence date: {item['date']}")
+
+            if item["kind"] == "doc":
+                st.markdown("**Supporting passage**")
+                st.write(item["text"])
+
+                if item["source_url"]:
+                    st.markdown(
+                        f"[Open source document]({item['source_url']})"
+                    )
+
+            elif item["kind"] == "price":
+                st.markdown("**Historical price data**")
+                st.write(item["fields"])
 
 def display_claim(claim):
     """Display a supported claim."""
@@ -1557,34 +1585,77 @@ elif navigation == "Financial Research":
     st.markdown(
         f"""
         <div class="section-card">
-            <h3>📄 {selected_company}</h3>
+            <h3>📄 Research {selected_company}</h3>
             <p class="subtitle">
-                Research earnings releases, annual reports,
-                and earnings call transcripts.
-            </p>
-            <p>
-                Document retrieval will be connected to the
-                existing RAG pipeline.
+                Ask questions about earnings releases, annual reports,
+                and earnings-call transcripts using retrieved financial evidence.
             </p>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    st.info(
-        "Document search is not connected yet."
-    )
+    if selected_company.upper() not in DOC_SYMBOLS:
+        st.warning(
+            f"No ingested financial documents were detected for {selected_company}. "
+            "Select a company with available documents."
+        )
+    else:
+        research_question = st.text_area(
+            "Your research question",
+            placeholder=(
+                f"What were {selected_company}'s key financial results "
+                "and business risks in its latest quarterly report?"
+            ),
+            height=110,
+            key="financial_research_question",
+        )
 
-    st.markdown(
-        """
-        **Planned capabilities**
+        if st.button(
+            "🔍 Research Documents",
+            type="primary",
+            use_container_width=True,
+            key="run_financial_research",
+        ):
+            if not research_question.strip():
+                st.warning("Please enter a research question.")
+            else:
+                try:
+                    with st.spinner(
+                        "Searching financial documents and generating an answer..."
+                    ):
+                        result = generate_answer(
+                            query=research_question.strip(),
+                            company=selected_company,
+                            as_of=analysis_date.isoformat(),
+                            k=5,
+                        )
 
-        - Search financial documents.
-        - Retrieve relevant passages.
-        - Display source titles and publication dates.
-        - Show supporting evidence for financial claims.
-        """
-    )
+                    st.markdown("### Research Answer")
+                    st.markdown(result.get("answer", "No answer was returned."))
+
+                    citations = result.get("citations", [])
+                    st.markdown("### Supporting Evidence")
+
+                    if citations:
+                        for index, citation in enumerate(citations, start=1):
+                            doc_id = citation.get("doc_id", "Financial document")
+                            with st.expander(f"Source {index}: {doc_id}"):
+                                st.write(
+                                    citation.get("text", "No passage text available.")
+                                )
+                    else:
+                        st.info(
+                            "No supporting passages were retrieved. Try a more specific "
+                            "question or check that the document index has been built."
+                        )
+
+                except Exception as exc:
+                    st.error(
+                        "Financial research failed. Check that the document index, "
+                        "retrieval dependencies, and Ollama are available."
+                    )
+                    st.exception(exc)
 
 
 # ============================================================
@@ -2000,6 +2071,19 @@ elif navigation == "Analysis Results":
             st.info(
                 "No holdings were provided in this profile."
             )
+        # --------------------------------------------------------
+    # PORTFOLIO
+    # --------------------------------------------------------
+
+    st.divider()
+    render_portfolio(st, run.model_dump(mode="json"))
+
+    # --------------------------------------------------------
+    # SESSION METRICS
+    # --------------------------------------------------------
+
+    st.divider()
+    render_metrics(st, run.model_dump(mode="json"))
 
     # --------------------------------------------------------
     # RUN CONFIGURATION

@@ -14,6 +14,8 @@ from src.agents.filings import MODEL_NAME
 from src.agents.orchestrator import run_agents_sync
 from src.contracts import Profile, RunRecord
 from src.efce import build_registry, run_efce
+from src.portfolio.apply import apply_profile, load_latest_prices
+from src.portfolio.store import connect, load_profile, seed_demo_profiles
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -27,11 +29,15 @@ def run_analysis(
     use_llm: bool = True,
     timeout_s: float = 240.0,
 ) -> RunRecord:
-    """Run all agents and EFCE for a symbol, returning a validated RunRecord.
+    """Run all agents, EFCE, and optional portfolio analysis.
+
+    The agents generate findings and signals. EFCE validates their claims.
+    The portfolio layer adds portfolio numbers and risk notes without
+    modifying signals, findings, or EFCE output.
 
     Note: `question` is recorded in run config for traceability. The current
-    agents use their predefined retrieval topics and do not yet use this
-    question to customize retrieval.
+    agents use predefined retrieval topics and do not yet use this question
+    to customize retrieval.
     """
     if not symbol or not symbol.strip():
         raise ValueError("symbol must be a non-empty stock symbol")
@@ -50,13 +56,27 @@ def run_analysis(
         rerank=True,
     )
 
+    # --------------------------------------------------------
+    # 1. Run agents
+    # --------------------------------------------------------
+
     findings, signals, citations = run_agents_sync(
         context,
         timeout_s=timeout_s,
     )
+
+    # --------------------------------------------------------
+    # 2. Validate claims using EFCE
+    # --------------------------------------------------------
+
     registry = build_registry(citations, signals)
     efce_result = run_efce(findings, registry, as_of)
+
     elapsed_ms = (time.perf_counter() - started) * 1000
+
+    # --------------------------------------------------------
+    # 3. Calculate session metrics
+    # --------------------------------------------------------
 
     supported_count = len(efce_result.supported)
     rejected_count = len(efce_result.rejected)
@@ -66,10 +86,14 @@ def run_analysis(
         f"latency_ms_{finding.agent}": round(finding.latency_ms, 1)
         for finding in findings
     }
+
     metrics.update({
         "end_to_end_ms": round(elapsed_ms, 1),
         "agents_complete": float(
-            sum(finding.status == "complete" for finding in findings)
+            sum(
+                finding.status == "complete"
+                for finding in findings
+            )
         ),
         "citation_pass_rate": (
             round(supported_count / total_validated, 3)
@@ -77,6 +101,11 @@ def run_analysis(
             else 0.0
         ),
     })
+
+    # --------------------------------------------------------
+    # 4. Create the run record
+    # --------------------------------------------------------
+
     now = datetime.now()
 
     record = RunRecord(
@@ -98,11 +127,69 @@ def run_analysis(
         metrics=metrics,
     )
 
-    # Persist the completed analysis for later evidence verification.
+       # --------------------------------------------------------
+    # 5. Apply the portfolio profile
+    # --------------------------------------------------------
+
+    db_path = ROOT / "data" / "portfolio.db"
+    conn = connect(str(db_path))
+
+    try:
+        # Ensure the synthetic demo profiles exist in the database.
+        seed_demo_profiles(conn)
+
+        # If the dashboard supplied a profile, use it directly.
+        # This preserves its exact holdings and risk limits.
+        if profile is not None:
+            selected_profile = profile
+
+        else:
+            # Otherwise, fall back to the conservative demo profile.
+            selected_profile = load_profile(conn, "conservative")
+
+        if selected_profile is not None:
+            # Find the latest available closing prices on or before
+            # the requested analysis date.
+            price_dir_path = (
+                Path(price_dir)
+                if price_dir
+                else ROOT / "data" / "prices"
+            )
+
+            symbols = [
+                holding.symbol
+                for holding in selected_profile.holdings
+            ]
+
+            prices = load_latest_prices(
+                symbols,
+                as_of,
+                price_dir_path,
+            )
+
+            # Apply the selected profile without modifying signals,
+            # findings, or EFCE output.
+            record = apply_profile(
+                record,
+                selected_profile,
+                prices,
+            )
+
+    finally:
+        conn.close()
+
+    # --------------------------------------------------------
+    # 6. Save the completed run
+    # --------------------------------------------------------
+
     runs_dir = ROOT / "data" / "runs"
-    runs_dir.mkdir(parents=True, exist_ok=True)
+    runs_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     run_path = runs_dir / f"{record.run_id}.json"
+
     run_path.write_text(
         record.model_dump_json(indent=2),
         encoding="utf-8",

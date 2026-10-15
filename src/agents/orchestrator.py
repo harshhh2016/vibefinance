@@ -25,8 +25,13 @@ async def _run_one(name: str, fn: Callable, ctx: AgentContext, timeout_s: float,
         except asyncio.TimeoutError:
             error = "timeout after {}s".format(timeout_s)
             break                                          # no retry on timeout
-        except Exception as exc:                           # bad output or agent crash: retry
+        except Exception as exc:
             error = "{}: {}".format(type(exc).__name__, str(exc)[:200])
+
+            if name == "sentiment":
+                print("\n[SENTIMENT DEBUG ERROR]")
+                import traceback
+                traceback.print_exc()
     failed = Finding(agent=name, status="failed", error=error, limitations=[error],
                      latency_ms=(time.perf_counter() - start) * 1000)
     return failed, [], []

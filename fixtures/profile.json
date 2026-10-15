@@ -6,16 +6,28 @@
   "max_sector_pct": 30.0,
   "holdings": [
     {
-      "symbol": "AAA",
-      "quantity": 100.0,
-      "avg_cost": 100.0,
+      "symbol": "TCS",
+      "quantity": 10,
+      "avg_cost": 3500.0,
       "sector": "IT"
     },
     {
-      "symbol": "BBB",
-      "quantity": 50.0,
-      "avg_cost": 200.0,
+      "symbol": "INFY",
+      "quantity": 15,
+      "avg_cost": 1500.0,
+      "sector": "IT"
+    },
+    {
+      "symbol": "HDFCBANK",
+      "quantity": 20,
+      "avg_cost": 1700.0,
       "sector": "Banking"
+    },
+    {
+      "symbol": "RELIANCE",
+      "quantity": 10,
+      "avg_cost": 2500.0,
+      "sector": "Energy"
     }
   ]
 }

@@ -1,0 +1,348 @@
+{
+  "run_id": "run-20261015-225127-034909",
+  "created_at": "2026-10-15T22:51:27.034909",
+  "symbol": "TCS",
+  "profile_id": "demo-conservative",
+  "as_of": "2026-10-14",
+  "config": {
+    "model": "llama3.2:latest",
+    "temperature": 0,
+    "top_k": 3,
+    "timeout_s": 240.0,
+    "question": null
+  },
+  "signals": [
+    {
+      "symbol": "TCS",
+      "as_of": "2026-10-14",
+      "name": "momentum",
+      "value": 0.029388,
+      "unit": "pct_return",
+      "label": "neutral",
+      "confidence": 0.5,
+      "method": "20-trading-day return, thresholds +/-3%",
+      "window_start": "2026-09-15",
+      "window_end": "2026-10-14",
+      "evidence_ids": [
+        "px:TCS:2026-10-14",
+        "px:TCS:2026-09-15"
+      ],
+      "data_status": "historical",
+      "status": "complete"
+    },
+    {
+      "symbol": "TCS",
+      "as_of": "2026-10-14",
+      "name": "volume_anomaly",
+      "value": 2.8463,
+      "unit": "rolling_z_score",
+      "label": "unusual",
+      "confidence": 0.685,
+      "method": "z-score of volume against the previous 20 sessions, unusual if |z| >= 2.0",
+      "window_start": "2026-09-15",
+      "window_end": "2026-10-14",
+      "evidence_ids": [
+        "px:TCS:2026-10-14"
+      ],
+      "data_status": "historical",
+      "status": "complete"
+    },
+    {
+      "symbol": "TCS",
+      "as_of": "2026-10-14",
+      "name": "sentiment",
+      "value": 0.1045,
+      "unit": "score",
+      "label": "neutral",
+      "confidence": 0.621,
+      "method": "word-list sentiment score, thresholds +/-0.2",
+      "window_start": "2026-05-15",
+      "window_end": "2026-10-08",
+      "evidence_ids": [
+        "doc:TCS-AR-FY26:p053:c02",
+        "doc:TCS-AR-FY26:p060:c01",
+        "doc:TCS-AR-FY26:p060:c03",
+        "doc:TCS-AR-FY26:p066:c01",
+        "doc:TCS-AR-FY26:p061:c03",
+        "doc:TCS-AR-FY26:p053:c01",
+        "doc:TCS-TR-Q2FY27:p011:c02",
+        "doc:TCS-TR-Q2FY27:p004:c01",
+        "doc:TCS-AR-FY26:p024:c02"
+      ],
+      "data_status": "historical",
+      "status": "complete"
+    }
+  ],
+  "findings": [
+    {
+      "agent": "technical",
+      "status": "complete",
+      "claims": [
+        {
+          "claim_id": "t1",
+          "entity": "TCS",
+          "metric_or_event": "price_momentum",
+          "period": "2026-10-14",
+          "direction": "neutral",
+          "claim_type": "factual",
+          "text": "20-trading-day return is +2.94% (neutral).",
+          "evidence_ids": [
+            "px:TCS:2026-10-14"
+          ],
+          "confidence": 0.5
+        },
+        {
+          "claim_id": "t2",
+          "entity": "TCS",
+          "metric_or_event": "volume_anomaly",
+          "period": "2026-10-14",
+          "direction": "uncertain",
+          "claim_type": "factual",
+          "text": "Volume z-score is 2.85 against the prior 20 sessions (unusual).",
+          "evidence_ids": [
+            "px:TCS:2026-10-14"
+          ],
+          "confidence": 0.685
+        }
+      ],
+      "limitations": [],
+      "latency_ms": 99.18970000580885,
+      "error": null
+    },
+    {
+      "agent": "sentiment",
+      "status": "complete",
+      "claims": [
+        {
+          "claim_id": "s1",
+          "entity": "TCS",
+          "metric_or_event": "text_sentiment",
+          "period": "2026-10-14",
+          "direction": "neutral",
+          "claim_type": "inferred",
+          "text": "Word-list sentiment over 9 retrieved passages is neutral (score +0.10).",
+          "evidence_ids": [
+            "doc:TCS-AR-FY26:p053:c02",
+            "doc:TCS-AR-FY26:p060:c01",
+            "doc:TCS-AR-FY26:p060:c03",
+            "doc:TCS-AR-FY26:p066:c01",
+            "doc:TCS-AR-FY26:p061:c03",
+            "doc:TCS-AR-FY26:p053:c01",
+            "doc:TCS-TR-Q2FY27:p011:c02",
+            "doc:TCS-TR-Q2FY27:p004:c01",
+            "doc:TCS-AR-FY26:p024:c02"
+          ],
+          "confidence": 0.621
+        }
+      ],
+      "limitations": [],
+      "latency_ms": 77751.19640000048,
+      "error": null
+    },
+    {
+      "agent": "filings",
+      "status": "complete",
+      "claims": [
+        {
+          "claim_id": "f1",
+          "entity": "TCS",
+          "metric_or_event": "operating_margin",
+          "period": "reported_2026-10-08",
+          "direction": "neutral",
+          "claim_type": "factual",
+          "text": "We delivered an operating margin of 24% and net margin of 19%. (TCS-TR-Q2FY27, p.27)",
+          "evidence_ids": [
+            "doc:TCS-TR-Q2FY27:p027:c02"
+          ],
+          "confidence": 0.6420536041259766
+        },
+        {
+          "claim_id": "f2",
+          "entity": "TCS",
+          "metric_or_event": "revenue",
+          "period": "reported_2026-10-08",
+          "direction": "neutral",
+          "claim_type": "factual",
+          "text": "India revenue grew 6%, and Regional Markets grew 3.6% year-on-year. (TCS-TR-Q2FY27, p.2)",
+          "evidence_ids": [
+            "doc:TCS-TR-Q2FY27:p002:c02"
+          ],
+          "confidence": 0.6663296222686768
+        },
+        {
+          "claim_id": "f3",
+          "entity": "TCS",
+          "metric_or_event": "total_contract_value",
+          "period": "reported_2026-10-08",
+          "direction": "neutral",
+          "claim_type": "factual",
+          "text": "Q2 Total Contract Value (TCV): US$ 9.6 billion (TCS-PR-Q2FY27, p.1)",
+          "evidence_ids": [
+            "doc:TCS-PR-Q2FY27:p001:c01"
+          ],
+          "confidence": 0.6782624125480652
+        },
+        {
+          "claim_id": "f4",
+          "entity": "TCS",
+          "metric_or_event": "attrition",
+          "period": "reported_2026-10-08",
+          "direction": "neutral",
+          "claim_type": "factual",
+          "text": "LTM Attrition (IT Services): 13.3% (TCS-PR-Q2FY27, p.2)",
+          "evidence_ids": [
+            "doc:TCS-PR-Q2FY27:p002:c01"
+          ],
+          "confidence": 0.6637483239173889
+        },
+        {
+          "claim_id": "f5",
+          "entity": "TCS",
+          "metric_or_event": "dividend",
+          "period": "reported_2026-05-15",
+          "direction": "neutral",
+          "claim_type": "factual",
+          "text": "Dividends paid during the year ended March 31, 2026 include an amount of ₹30.00 per equity share towards final dividend for the year ended March 31, 2025 (TCS-AR-FY26, p.238)",
+          "evidence_ids": [
+            "doc:TCS-AR-FY26:p238:c01"
+          ],
+          "confidence": 0.7427899837493896
+        }
+      ],
+      "limitations": [
+        "claims written by llama3.2:latest; each figure checked against its cited passage"
+      ],
+      "latency_ms": 110670.01050000545,
+      "error": null
+    }
+  ],
+  "efce": {
+    "status": "complete",
+    "supported": [
+      {
+        "claim_id": "t1",
+        "entity": "TCS",
+        "metric_or_event": "price_momentum",
+        "period": "2026-10-14",
+        "direction": "neutral",
+        "claim_type": "factual",
+        "text": "20-trading-day return is +2.94% (neutral).",
+        "evidence_ids": [
+          "px:TCS:2026-10-14"
+        ],
+        "confidence": 0.5
+      },
+      {
+        "claim_id": "t2",
+        "entity": "TCS",
+        "metric_or_event": "volume_anomaly",
+        "period": "2026-10-14",
+        "direction": "uncertain",
+        "claim_type": "factual",
+        "text": "Volume z-score is 2.85 against the prior 20 sessions (unusual).",
+        "evidence_ids": [
+          "px:TCS:2026-10-14"
+        ],
+        "confidence": 0.685
+      },
+      {
+        "claim_id": "s1",
+        "entity": "TCS",
+        "metric_or_event": "text_sentiment",
+        "period": "2026-10-14",
+        "direction": "neutral",
+        "claim_type": "inferred",
+        "text": "Word-list sentiment over 9 retrieved passages is neutral (score +0.10).",
+        "evidence_ids": [
+          "doc:TCS-AR-FY26:p053:c02",
+          "doc:TCS-AR-FY26:p060:c01",
+          "doc:TCS-AR-FY26:p060:c03",
+          "doc:TCS-AR-FY26:p066:c01",
+          "doc:TCS-AR-FY26:p061:c03",
+          "doc:TCS-AR-FY26:p053:c01",
+          "doc:TCS-TR-Q2FY27:p011:c02",
+          "doc:TCS-TR-Q2FY27:p004:c01",
+          "doc:TCS-AR-FY26:p024:c02"
+        ],
+        "confidence": 0.621
+      },
+      {
+        "claim_id": "f1",
+        "entity": "TCS",
+        "metric_or_event": "operating_margin",
+        "period": "reported_2026-10-08",
+        "direction": "neutral",
+        "claim_type": "factual",
+        "text": "We delivered an operating margin of 24% and net margin of 19%. (TCS-TR-Q2FY27, p.27)",
+        "evidence_ids": [
+          "doc:TCS-TR-Q2FY27:p027:c02"
+        ],
+        "confidence": 0.6420536041259766
+      },
+      {
+        "claim_id": "f2",
+        "entity": "TCS",
+        "metric_or_event": "revenue",
+        "period": "reported_2026-10-08",
+        "direction": "neutral",
+        "claim_type": "factual",
+        "text": "India revenue grew 6%, and Regional Markets grew 3.6% year-on-year. (TCS-TR-Q2FY27, p.2)",
+        "evidence_ids": [
+          "doc:TCS-TR-Q2FY27:p002:c02"
+        ],
+        "confidence": 0.6663296222686768
+      },
+      {
+        "claim_id": "f3",
+        "entity": "TCS",
+        "metric_or_event": "total_contract_value",
+        "period": "reported_2026-10-08",
+        "direction": "neutral",
+        "claim_type": "factual",
+        "text": "Q2 Total Contract Value (TCV): US$ 9.6 billion (TCS-PR-Q2FY27, p.1)",
+        "evidence_ids": [
+          "doc:TCS-PR-Q2FY27:p001:c01"
+        ],
+        "confidence": 0.6782624125480652
+      },
+      {
+        "claim_id": "f4",
+        "entity": "TCS",
+        "metric_or_event": "attrition",
+        "period": "reported_2026-10-08",
+        "direction": "neutral",
+        "claim_type": "factual",
+        "text": "LTM Attrition (IT Services): 13.3% (TCS-PR-Q2FY27, p.2)",
+        "evidence_ids": [
+          "doc:TCS-PR-Q2FY27:p002:c01"
+        ],
+        "confidence": 0.6637483239173889
+      },
+      {
+        "claim_id": "f5",
+        "entity": "TCS",
+        "metric_or_event": "dividend",
+        "period": "reported_2026-05-15",
+        "direction": "neutral",
+        "claim_type": "factual",
+        "text": "Dividends paid during the year ended March 31, 2026 include an amount of ₹30.00 per equity share towards final dividend for the year ended March 31, 2025 (TCS-AR-FY26, p.238)",
+        "evidence_ids": [
+          "doc:TCS-AR-FY26:p238:c01"
+        ],
+        "confidence": 0.7427899837493896
+      }
+    ],
+    "conflicts": [],
+    "abstained": [],
+    "rejected": []
+  },
+  "metrics": {
+    "latency_ms_technical": 99.2,
+    "latency_ms_sentiment": 77751.2,
+    "latency_ms_filings": 110670.0,
+    "end_to_end_ms": 110892.8,
+    "agents_complete": 3.0,
+    "citation_pass_rate": 1.0
+  },
+  "data_status": "historical"
+}

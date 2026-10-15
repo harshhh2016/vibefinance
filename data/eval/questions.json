@@ -483,5 +483,185 @@
     "status": "todo",
     "question": "TODO",
     "expected": []
+  },
+  {
+    "id": "p01",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "By how much did sales in the Indian market fall versus the previous quarter?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "10.3"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 12,
+        "evidence": "India revenue decline by about 10%"
+      }
+    ]
+  },
+  {
+    "id": "p02",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What share of the workforce left over the last twelve months?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "LTM Attrition"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "attrition remained stable"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 9,
+        "evidence": "reduced by 30 basis points"
+      }
+    ]
+  },
+  {
+    "id": "p03",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "How much cash did the business generate from operations compared with its profit?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "14,190"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 5,
+        "evidence": "102.2%"
+      }
+    ]
+  },
+  {
+    "id": "p04",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What arrangement did the company announce with the German carmaker?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "Porsche AG"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 3,
+        "evidence": "MHP"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "Porsche"
+      }
+    ]
+  },
+  {
+    "id": "p05",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "Which industry groups shrank compared with the previous quarter?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 2,
+        "evidence": "Energy, Resources and Utilities"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 10,
+        "evidence": "declined 0.5% sequentially"
+      }
+    ]
+  },
+  {
+    "id": "p06",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "Is management giving numerical forecasts for upcoming quarters?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 2,
+        "evidence": "revenue or earnings guidance"
+      }
+    ]
+  },
+  {
+    "id": "p07",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What reduced staff costs this quarter even though more people were hired?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 20,
+        "evidence": "lower outlay in performance-linked"
+      }
+    ]
+  },
+  {
+    "id": "p08",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "Why did profitability slip even without annual pay raises?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 15,
+        "evidence": "subcontractors, third-party expenses"
+      }
+    ]
+  },
+  {
+    "id": "p09",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "Which industrial company picked TCS for its SAP transformation?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 3,
+        "evidence": "Honeywell"
+      }
+    ]
+  },
+  {
+    "id": "p10",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What new physical AI labs did TCS open and where?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 3,
+        "evidence": "Sahyadri Park"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "Autonomous Engineering Lab"
+      }
+    ]
   }
 ]

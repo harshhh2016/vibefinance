@@ -106,6 +106,13 @@ def _variant(mode, use_cap):
     return fn
 
 
+def _rerank(use_cap):
+    def fn(query, k, as_of, company="TCS", cap=None):
+        from src.rag.rerank_variant import run_rerank
+        return run_rerank(query, company, as_of, k, cap if use_cap else None)
+    return fn
+
+
 METHODS = {
     "baseline": baseline,
     "hybrid": hybrid,                  # teammate: semantic + keyword-overlap bonus
@@ -114,6 +121,8 @@ METHODS = {
     "rrf": _variant("hybrid", False),  # embeddings + BM25, rank-fused
     "capped": _variant("embed", True), # embeddings + per-document cap
     "rrf_capped": _variant("hybrid", True),
+    "rerank": _rerank(False),
+    "rerank_capped": _rerank(True),
 }
 
 # ---------------------------------------------------------------- hit parsing

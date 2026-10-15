@@ -123,3 +123,14 @@ def test_inferred_claims_exempt_from_number_check(tmp_path):
     r = run_of([c, claim("f1", "margin 31%", ["doc:A:p001:c01"])])
     out = score_run(r, {"id": "t", "setup": "", "expected": {"unsupported_numbers": 0}}, s)
     assert out["unsupported_numbers"] == [("f1", "31")]
+
+
+def test_both_sides_kept_does_not_require_a_conflict_report(tmp_path):
+    s = make_store(tmp_path)
+    both = [claim("a", "up", ["doc:A:p001:c01"], "positive", period="YoY"),
+            claim("b", "down", ["doc:A:p001:c01"], "negative", period="QoQ")]
+    sc = {"id": "t", "setup": "", "expected": {"both_sides_kept": True, "conflict_kinds": ["temporal_difference"]}}
+    out = check_expected(run_of(both), sc, s)             # B1-like: keeps both, reports no conflict
+    assert out == {"both_sides_kept": True, "conflict_kinds": False}
+    out2 = check_expected(run_of(both, supported=[both[0]]), sc, s)   # drops one side
+    assert out2["both_sides_kept"] is False

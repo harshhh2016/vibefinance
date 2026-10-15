@@ -145,7 +145,6 @@ def citation_metrics(run, store: EvidenceStore) -> dict:
 def conflict_metrics(run) -> dict:
     efce = run.get("efce") or {}
     confs = efce.get("conflicts", [])
-    supported_ids = {c["claim_id"] for c in efce.get("supported", [])}
     out = output_claims(run)
     # winner_picked is judged from RAW agent claims, so it works for systems with no conflict layer
     raw = [c for f in run.get("findings", []) for c in f.get("claims", [])]
@@ -160,9 +159,20 @@ def conflict_metrics(run) -> dict:
                      if c.get("claim_id") in {x.get("claim_id") for x in g}}
             if not {"positive", "negative"} <= shown:
                 winner = True
+    # both_sides_kept (amended after the first dev run): every claim in a reported conflict, and every
+    # claim in an opposing-direction group (same entity+metric, any period), must be in the output.
+    # It no longer requires a conflict to be REPORTED, so it does not double-count conflict_kinds.
+    out_ids = {c.get("claim_id") for c in out}
+    must_keep = [set(c["claim_ids"]) for c in confs]
+    by_metric = {}
+    for c in raw:
+        by_metric.setdefault((c.get("entity"), c.get("metric_or_event")), []).append(c)
+    for g in by_metric.values():
+        if {"positive", "negative"} <= {c.get("direction") for c in g}:
+            must_keep.append({c.get("claim_id") for c in g})
     return {"kinds": sorted({c["kind"] for c in confs}),
             "n_by_kind": {k: sum(1 for c in confs if c["kind"] == k) for k in {c["kind"] for c in confs}},
-            "both_sides_kept": bool(confs) and all(set(c["claim_ids"]) <= supported_ids for c in confs),
+            "both_sides_kept": bool(must_keep) and all(ids <= out_ids for ids in must_keep),
             "winner_picked": winner}
 
 

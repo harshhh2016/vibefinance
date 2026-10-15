@@ -65,18 +65,19 @@ def parse_claims(data, label_to_eid: dict, symbol, as_of: date) -> list[dict]:
 def run_b0(sc, ctx, llm_fn=None) -> dict:
     t0 = time.perf_counter()
     as_of = ctx.as_of
-    sources, label_to_eid, error, claims, status = [], {}, None, [], "complete"
+    sources, label_to_eid, error, claims, status, prompt = [], {}, None, [], "complete", None
     try:
         px = latest_price(ctx.symbol, as_of, ctx.price_dir)
         if px:
             sources.append(("PX", px[1]))
             label_to_eid["PX"] = px[0]
-        for i, c in enumerate(list(ctx.retrieve_fn(QUERY, ctx.symbol, as_of, N_PASSAGES))[:N_PASSAGES], 1):
+        for i, c in enumerate(list(ctx.retrieve_fn(QUERY, ctx.symbol, as_of, N_PASSAGES)), 1):   # keep everything retrieved
             sources.append(("P{}".format(i), c.text[:PASSAGE_CHARS]))
             label_to_eid["P{}".format(i)] = c.evidence_id
         if llm_fn is None:
             from src.agents.filings import ollama_json as llm_fn
-        claims = parse_claims(llm_fn(build_prompt(ctx.symbol, as_of, sources)), label_to_eid, ctx.symbol, as_of)
+        prompt = build_prompt(ctx.symbol, as_of, sources)
+        claims = parse_claims(llm_fn(prompt), label_to_eid, ctx.symbol, as_of)
     except Exception as exc:
         status, error = "failed", "{}: {}".format(type(exc).__name__, str(exc)[:200])
     ms = (time.perf_counter() - t0) * 1000
@@ -88,4 +89,4 @@ def run_b0(sc, ctx, llm_fn=None) -> dict:
             "efce": {"status": "complete" if claims else "failed", "supported": claims, "conflicts": [],
                      "abstained": [], "rejected": []},
             "metrics": {"end_to_end_ms": round(ms, 1), "agents_ms": round(ms, 1), "agents_complete": float(status == "complete")},
-            "system": "B0", "scenario": sc["id"]}
+            "system": "B0", "scenario": sc["id"], "prompts": [prompt] if prompt else []}

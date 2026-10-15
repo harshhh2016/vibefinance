@@ -246,7 +246,10 @@ def main() -> int:
             results[sid] = {}
             for name, rec in recs.items():
                 (out / "{}__{}.json".format(sid, name)).write_text(json.dumps(rec, indent=1), encoding="utf-8")
-                r = score_run(rec, sc, store, extras)
+                ex = dict(extras)
+                if name == "B0" and "prompts" in ex:
+                    ex["prompts"] = rec.get("prompts", [])      # B0's OWN prompt, not the Filings agent's
+                r = score_run(rec, sc, store, ex)
                 bad = [k for k, v in r["checks"].items() if v is False]
                 nos = [k for k, v in r["checks"].items() if v is None]
                 results[sid][name] = {"passed": r["passed"], "failed": r["failed"], "not_scorable": r["not_scorable"],

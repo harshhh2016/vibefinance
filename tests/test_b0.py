@@ -34,3 +34,10 @@ def test_run_b0_success_and_failure(tmp_path):
     bad = run_b0(sc, ctx, llm_fn=boom)
     assert bad["findings"][0]["status"] == "failed" and "TimeoutError" in bad["findings"][0]["error"]
     assert bad["efce"]["status"] == "failed" and bad["efce"]["supported"] == []
+
+
+def test_b0_keeps_every_retrieved_passage_and_records_its_prompt(tmp_path):
+    items = [NS(evidence_id="doc:X:p{}:c1".format(i), text="t{}".format(i)) for i in range(1, 7)]
+    ctx = NS(symbol="TCS", as_of=date(2026, 10, 15), price_dir=str(px(tmp_path)), retrieve_fn=lambda q, s, a, k: items)
+    rec = run_b0({"id": "s09", "symbol": "TCS", "as_of": "2026-10-15"}, ctx, llm_fn=lambda p: {"claims": []})
+    assert "[P6]" in rec["prompts"][0]

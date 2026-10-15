@@ -920,5 +920,229 @@
         "evidence": "Female 2,05,550 3,448 1.7"
       }
     ]
+  },
+  {
+    "id": "p11",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What were TCS's total sales for the latest quarter, expressed in rupees?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "73,188"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 9,
+        "evidence": "73,188"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 2,
+        "evidence": "73,188"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "73,188"
+      }
+    ]
+  },
+  {
+    "id": "p12",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "How much did the company earn after all expenses and taxes in the latest quarter?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "13,884"
+      },
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 9,
+        "evidence": "13,884"
+      }
+    ]
+  },
+  {
+    "id": "p13",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "How big is the artificial intelligence business on a yearly run-rate basis, and what portion of overall sales does it represent?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "3.1 billion"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "3.1 billion"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 13,
+        "evidence": "AI revenues now hitting 10%"
+      }
+    ]
+  },
+  {
+    "id": "p14",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What level of profitability does management aspire to reach over the long run?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 14,
+        "evidence": "26% to 28%"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 25,
+        "evidence": "26%-28%"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 26,
+        "evidence": "26%-28%"
+      }
+    ]
+  },
+  {
+    "id": "p15",
+    "split": "dev",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "Expressed in dollars, what were sales for the latest quarter and how much did they grow?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 3,
+        "evidence": "7,642"
+      }
+    ]
+  },
+  {
+    "id": "p16",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What level of profitability from operations did the company post for the three months?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "24.0%"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 4,
+        "evidence": "24%"
+      }
+    ]
+  },
+  {
+    "id": "p17",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "How much business did the company sign up for in total deal value this quarter?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "9.6 billion"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 2,
+        "evidence": "9.6"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 11,
+        "evidence": "9.6"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 28,
+        "evidence": "9.6"
+      }
+    ]
+  },
+  {
+    "id": "p18",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "What payout per share is being distributed to shareholders and on what date?",
+    "expected": [
+      {
+        "doc": "TCS-PR-Q2FY27",
+        "page": 1,
+        "evidence": "Dividend per share"
+      }
+    ]
+  },
+  {
+    "id": "p19",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "How much will the MHP deal hurt profitability?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 15,
+        "evidence": "50 basis points"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 19,
+        "evidence": "50 basis point"
+      },
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 20,
+        "evidence": "50 bps"
+      }
+    ]
+  },
+  {
+    "id": "p20",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "How much time passes before newly built server-farm capacity begins to bring in revenue?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 21,
+        "evidence": "18 to 24 months"
+      }
+    ]
+  },
+  {
+    "id": "p21",
+    "split": "heldout",
+    "type": "paraphrase",
+    "answerable": true,
+    "question": "How many days of sales were outstanding in receivables at the end of the quarter?",
+    "expected": [
+      {
+        "doc": "TCS-TR-Q2FY27",
+        "page": 5,
+        "evidence": "74 days"
+      }
+    ]
   }
 ]

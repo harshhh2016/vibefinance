@@ -7,7 +7,7 @@ VibeFinance turns market data and company filings into cited, personalised signa
 ```mermaid
 flowchart LR
     P[Price CSVs] --> T[Technical agent]
-    D[Filings: chunks.jsonl + embeddings] --> R[Retrieval + rerank]
+    D[Filings: chunks.jsonl + embeddings] --> R[Retrieval + optional cross-encoder rerank]
     R --> F[Filings agent]
     R --> S[Sentiment agent]
     T --> O[Orchestrator]
@@ -27,9 +27,9 @@ flowchart LR
 
 **Orchestrator** (`src/agents/orchestrator.py`). Runs the three agents in parallel with a timeout (default 240 s). A bad output or crash gets one retry; a timeout does not. A failed agent becomes a `Finding` with status `failed` and an error, so the failure is visible rather than silent.
 
-**Retrieval** (`src/rag`). 927 chunks of TCS documents, embedded with nomic-embed-text, with a rerank step. Every passage carries an evidence id (`doc:<doc>:p<page>:c<chunk>`), its document, page and publication date. Only documents dated on or before the chosen as-of date are retrievable, so the system cannot look ahead. Price evidence ids are `px:<SYMBOL>:<date>`.
+**Retrieval** (`src/rag`). 927 chunks of TCS documents, embedded with nomic-embed-text. The Filings agent retrieves 20 candidates and, reorders them (reranking is on by default, AgentContext.rerank) with a cross-encoder (ms-marco-MiniLM-L-6-v2) before keeping the top results. Every passage carries an evidence id (`doc:<doc>:p<page>:c<chunk>`), its document, page and publication date. Only documents dated on or before the chosen as-of date are retrievable, so the system cannot look ahead. Price evidence ids are `px:<SYMBOL>:<date>`.
 
-**Injection guard.** Retrieved text is treated as data, never as instructions. A passage that looks like an instruction is kept out of the model prompt and a limitation is recorded in the finding. It has been tested only on synthetic injected text.
+**Injection guard** (Filings agent). Retrieved text is treated as data, never as instructions. A pattern match for instruction-like phrasing (for example "ignore previous instructions", "you are now", "system prompt") drops that passage before the model prompt is built and records a limitation naming the dropped passages. It catches only the phrasings its patterns list, and it has been tested only on synthetic injected text. The sentiment agent is a word list with no model, so there is no prompt to inject into.
 
 **EFCE: Evidence and Conflict Resolution Engine** (`src/efce`). A rule layer after the agents; it uses no model.
 - Rejects claims citing unknown evidence ids (`unknown_evidence_id`) and claims with no evidence (`missing_evidence`).
